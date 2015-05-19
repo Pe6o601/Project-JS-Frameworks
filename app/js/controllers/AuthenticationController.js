@@ -3,7 +3,7 @@ SocialNetwork.controller("authenticationController", function ($scope, userServi
     $scope.register = function () {
 
         userServices.Register($scope.registerData)
-            .then(function(data){
+            .then(function (data) {
                 userServices.SetCredentials(data);
 
                 console.log(data)
@@ -14,7 +14,7 @@ SocialNetwork.controller("authenticationController", function ($scope, userServi
     $scope.login = function () {
 
         userServices.Login($scope.loginData)
-            .then(function(data){
+            .then(function (data) {
                 userServices.SetCredentials(data);
 
                 console.log(data)
