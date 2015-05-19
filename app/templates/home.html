@@ -1,7 +1,18 @@
-<div ng-controller="HomepageController">
+<div ng-controller="homeController">
 
-    <h1>Wellcome {{username}}</h1>
+    <h1><a>{{username}}</a></h1>
     <div ng-click="logout()">Logout</div>
+
+</div>
+
+<div id="news-feed" ng-controller="homeController">
+    <h1>News Feed</h1>
+    <div infinite-scroll="nextPage()" infinite-scroll-distance='1'>
+        <div ng-repeat='post in newsPosts'>
+            <h2>{{post.author.name}}</h2>
+            <h3>{{post.postContent}}</h3>
+        </div>
+    </div>
 
 </div>
 
