@@ -41,6 +41,7 @@ SocialNetwork.factory('userServices', function ($http, $q) {
     service.NewsFeedPosts = function (startPostId) {
         var deferred = $q.defer();
         service.SetHeaders();
+        console.log("request :"+startPostId);
         var request = serviceUrl + "me/feed?StartPostId="+(startPostId||"")+"&PageSize=5";
        // console.log(request);
         $http.get(request)
