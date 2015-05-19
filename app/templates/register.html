@@ -1,0 +1,17 @@
+<form action="" ng-controller="AuthenticationController"  ng-submit="register()">
+<p>todo password validation</p>
+
+    <input ng-model="registerData.username" type="text"/>
+    <input ng-model="registerData.password" type="text"/>
+    <input ng-model="registerData.confirmPassword" type="text"/>
+    <input ng-model="registerData.name" type="text"/>
+    <input ng-model="registerData.email" type="text"/>
+    <label for="male">male</label>
+    <label for="female">female</label>
+    <label for="other">Yordan</label>
+    <input  ng-model="registerData.gender" type="radio" name="gender" id="male" value="male"/>
+    <input ng-model="registerData.gender"  type="radio" name="gender" id="female" value="female"/>
+    <input ng-model="registerData.gender"  type="radio" name="gender" id="other" value="other"/>
+    <input  type="submit" value="register"/>
+
+</form>
