@@ -6,7 +6,7 @@
 
 </div>
 
-<div id="news-feed" ng-controller="homeController">
+<div id="news-feed" ng-controller="postController">
     <h1>News Feed</h1>
 
     <div infinite-scroll="nextPage()" infinite-scroll-distance='0'>
@@ -17,7 +17,7 @@
 
             <button ng-click="showContent=!showContent">comment</button>
             <div ng-show="showContent">
-                <form action="" ng-submit="addCommentToPost(post.id)" ng-controller="homeController">
+                <form action="" ng-submit="addCommentToPost(post.id)" ng-controller="postController">
                     <input ng-model="commentData.content" value="" type="text">
                     <input type="submit" value="Comment this post">
                 </form>
@@ -29,6 +29,13 @@
                     <h4>{{comment.commentContent}}</h4>
                 </div>
             </div>
+            <!--<button ng-hide="showEditPost" ng-click="showEditPost=!showEditPost">edit post</button>-->
+            <!--<div ng-show="showEditPost">-->
+                <!--<form action="" ng-submit="editPostById(post.id)" ng-controller="homeController">-->
+                    <!--<input ng-model="$scope.contentToChange.postContent" value="" type="text">-->
+                    <!--<input type="submit" value="Edit post">-->
+                <!--</form>-->
+            <!--</div>-->
         </div>
     </div>
 

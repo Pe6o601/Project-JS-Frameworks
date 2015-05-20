@@ -12505,7 +12505,7 @@ var SCE_CONTEXTS = {
   JS: 'js'
 };
 
-// Helper functions follow.
+// helpers functions follow.
 
 // Copied from:
 // http://docs.closure-library.googlecode.com/git/closure_goog_string_string.js.source.html#line962

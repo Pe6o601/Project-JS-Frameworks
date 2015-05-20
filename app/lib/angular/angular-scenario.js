@@ -4725,7 +4725,7 @@ function safeActiveElement() {
 }
 
 /*
- * Helper functions for managing events -- not part of the public interface.
+ * helpers functions for managing events -- not part of the public interface.
  * Props to Dean Edwards' addEvent library for many of the ideas.
  */
 jQuery.event = {
@@ -22297,7 +22297,7 @@ var SCE_CONTEXTS = {
   JS: 'js'
 };
 
-// Helper functions follow.
+// helpers functions follow.
 
 // Copied from:
 // http://docs.closure-library.googlecode.com/git/closure_goog_string_string.js.source.html#line962
@@ -32460,7 +32460,7 @@ angular.scenario.ObjectModel.Step = function(name) {
 };
 
 /**
- * Helper method for setting all error status related properties
+ * helpers method for setting all error status related properties
  *
  * @param {string} status
  * @param {string} error

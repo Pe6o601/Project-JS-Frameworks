@@ -568,7 +568,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Jasny Bootstrap\'s JavaScr
       .on(pasteEventName, $.proxy(this.pasteEvent, this))
   }
 
-  //Helper Function for Caret positioning
+  //helpers Function for Caret positioning
   Inputmask.prototype.caret = function(begin, end) {
     if (this.$element.length === 0) return
     if (typeof begin == 'number') {
