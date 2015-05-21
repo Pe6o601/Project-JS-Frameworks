@@ -1,6 +1,6 @@
 'use strict';
 
-var SocialNetwork = angular.module('SocialNetwork', ['ngRoute', 'ui.bootstrap', 'angular-loading-bar','infinite-scroll']);
+var SocialNetwork = angular.module('SocialNetwork', ['ngRoute', 'ui.bootstrap', 'angular-loading-bar','infinite-scroll','customFilters']);
 
 
 SocialNetwork.config(function ($routeProvider) {
@@ -17,6 +17,12 @@ SocialNetwork.config(function ($routeProvider) {
         .when('/home', {
             templateUrl:'templates/home.html',
             controller:'homeController'
+        })
+        .when('/users/:name*', {
+            controller: 'friendsController',
+            templateUrl: function () {
+                return 'templates/userWall.html';
+            }
         })
         .otherwise({redirectTo: '/'})
 

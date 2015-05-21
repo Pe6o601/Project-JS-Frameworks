@@ -44,15 +44,15 @@ SocialNetwork.controller('postController', function ($scope, postServices) {
             })
     }
 
-    $scope.getCommentByPostId = function (id) {
-        postServices.GetCommentByPostId(id)
-            .then(function (data) {
-                console.log('yea');
-                $scope.comments = data.comments;
-            }, function (err) {
-                console.log(err);
-            })
-    }
+    //$scope.getCommentByPostId = function (id) {
+    //    postServices.GetCommentByPostId(id)
+    //        .then(function (data) {
+    //            console.log(data);
+    //            $scope.comments = data.comments;
+    //        }, function (err) {
+    //            console.log(err);
+    //        })
+    //}
 
     $scope.editPostById = function(id){
         postServices.EditPostById(id,$scope.contentToChange)

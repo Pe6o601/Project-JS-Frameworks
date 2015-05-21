@@ -1,0 +1,16 @@
+<div ng-controller="friendsController">
+    <input ng-model="search.searchTerm" ng-keyup="search()" data-toggle="dropdown" type="text" class="form-control"
+           placeholder="Search" autocomplete="off"/>
+    <ul id="search_results" id="drop-down-search-results" class="dropdown-menu" role="menu">
+        <li class="button-custom" class="searchResults" role="presentation" ng-repeat="user in findedUsers | limitTo: 2">
+            <a role="menuitem" tabindex="-1">
+                <div class="foundedUser" ng-click="redirectToUsersPage(user.username)">
+                    <img class="searchedProfilePic" errsrc ng-src="{{user.profileImageData}}" alt=""/>
+                    <p class="searchedUsername">{{user.name}}</p>
+                </div>
+            </a>
+        </li>
+    </ul>
+
+    <!--ng-model="user.name"-->
+</div>
