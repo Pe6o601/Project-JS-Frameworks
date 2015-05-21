@@ -27,8 +27,6 @@ SocialNetwork.factory('userServices', function ($http, $q) {
 
     service.Logout = function () {
         var deferred = $q.defer();
-        console.log(GetHeaders());
-        service.SetHeaders($http);
         $http.post(serviceUrl + "users/logout")
             .success(function (data) {
                 deferred.resolve(data);

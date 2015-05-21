@@ -1,0 +1,22 @@
+<div ng-controller="friendsController" ng-init="showMyFriends()" id="friends">
+    <div id="total-friends"><p id="text-friends"><a>Friends total {{myFriends.length}}</a></p></div>
+
+    <div class="row">
+        <div ng-repeat="friend in myFriends|limitTo:3">
+            <div class="col-xs-6 col-md-3" ng-click="redirectToUsersPage(friend.username)">
+                <a class="thumbnail">
+                    <img ng-src="{{friend.profileImageData}}" errsrc alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div ng-repeat="friend in myFriends|limitTo:6" ng-if="$index > 2">
+            <div class="col-xs-6 col-md-3" ng-click="redirectToUsersPage(friend.username)">
+                <a class="thumbnail">
+                    <img ng-src="{{friend.profileImageData}}" errsrc alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

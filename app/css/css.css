@@ -2,6 +2,23 @@ input {
     display: block;
 }
 
-div{
-    border:1px solid black;
+/*div{*/
+    /*border:1px solid black;*/
+
+/*}*/
+
+#mainContent{
+    margin-top: 5%;
 }
+
+#friends{
+    margin-left: 65%;
+    width: 400px;
+    height: 300px;
+}
+
+#total-friends{
+    width: 75%;
+    text-align: center;
+}
+
