@@ -38,6 +38,44 @@ SocialNetwork.factory('userServices', function ($http, $q) {
 
 
 
+    service.changePassword = function (changePasswordData) {
+        var defer = $q.defer();
+        $http.put(serviceUrl + "me/changepassword", changePasswordData)
+            .success(function (data) {
+                console.log(changePasswordData);
+                defer.resolve(data);
+            }).error(function (error) {
+                console.log(changePasswordData);
+                defer.reject(error);
+            });
+        return defer.promise;
+    };
+
+    service.getUserData = function() {
+        var defer = $q.defer();
+        $http.get(serviceUrl+"me")
+            .success(function (data) {
+                console.log(data);
+                defer.resolve(data);
+            }).error(function (error) {
+                console.log(error);
+                defer.reject(error);
+            });
+        return defer.promise;
+    };
+
+    service.editProfile = function(data) {
+        var defer = $q.defer();
+        $http.put(serviceUrl+"me", data)
+            .success(function (data) {
+                console.log(data);
+                defer.resolve(data);
+            }).error(function (error) {
+                console.log(error);
+                defer.reject(error);
+            });
+        return defer.promise;
+    };
 
 
 

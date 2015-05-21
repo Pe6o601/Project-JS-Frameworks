@@ -18,6 +18,18 @@ SocialNetwork.config(function ($routeProvider) {
             templateUrl:'templates/home.html',
             controller:'homeController'
         })
+        .when('/changePassword', {
+            templateUrl: 'templates/changePassword.html',
+            controller: 'userController'
+        })
+        .when('/editProfile', {
+            templateUrl: 'templates/editProfile.html',
+            controller: 'userController'
+        })
+        .when('/friends', {
+            templateUrl: 'templates/friends.html',
+            controller: 'friendsController'
+        })
         .when('/users/:name*', {
             controller: 'friendsController',
             templateUrl: function () {
