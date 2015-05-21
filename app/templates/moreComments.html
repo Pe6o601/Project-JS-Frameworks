@@ -1,0 +1,33 @@
+<li class="list-group-item">
+    <div class="row">
+        <div class="col-xs-2 col-md-1">
+            <img class="set-pic-size" errsrc
+                 ng-src="{{comment.author.profileImageData}}"
+                 class="img-circle img-responsive" alt=""/></div>
+        <div class="col-xs-10 col-md-11">
+            <div class="comment-text">
+                <h3>{{comment.commentContent}}</h3>
+            </div>
+            <div>
+
+                By: <a href="#">{{comment.author.name}}</a> on
+                {{comment.date|date}}
+            </div>
+        </div>
+
+        <div class="action">
+            <button type="button" class="btn btn-primary btn-xs"
+                    title="Edit">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+            <button type="button" class="btn btn-success btn-xs"
+                    title="Approved">
+                <span class="glyphicon glyphicon-ok"></span>
+            </button>
+            <button type="button" class="btn btn-danger btn-xs"
+                    title="Delete">
+                <span class="glyphicon glyphicon-trash"></span>
+            </button>
+        </div>
+    </div>
+</li>
