@@ -5,9 +5,9 @@ SocialNetwork.controller("authenticationController", function ($scope, userServi
         userServices.Register($scope.registerData)
             .then(function (data) {
                 SetCredentials(data);
+                $location.path('/home');
                 console.log(data)
             });
-        $location.path('/home');
     };
 
     $scope.login = function () {
@@ -15,9 +15,10 @@ SocialNetwork.controller("authenticationController", function ($scope, userServi
         userServices.Login($scope.loginData)
             .then(function (data) {
                 SetCredentials(data);
+                $location.path('/home');
+
                 console.log(data)
             });
-        $location.path('/home');
 
     };
 });
