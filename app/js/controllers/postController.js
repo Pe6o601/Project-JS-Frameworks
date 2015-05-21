@@ -1,6 +1,15 @@
 SocialNetwork.controller('postController', function ($scope, postServices) {
 
     $scope.username = sessionStorage['username'];
+    $scope.comments=[];
+
+    $scope.$watch("comments", function(){
+        console.log($scope.comments);
+    });
+
+    $scope.init = function(value) {
+        $scope.testInput= value;
+    }
 
     $scope.addPost = function () {
         postServices.AddPost()
@@ -44,15 +53,15 @@ SocialNetwork.controller('postController', function ($scope, postServices) {
             })
     }
 
-    //$scope.getCommentByPostId = function (id) {
-    //    postServices.GetCommentByPostId(id)
-    //        .then(function (data) {
-    //            console.log(data);
-    //            $scope.comments = data.comments;
-    //        }, function (err) {
-    //            console.log(err);
-    //        })
-    //}
+    $scope.getCommentByPostId = function (id) {
+        postServices.GetCommentByPostId(id)
+            .then(function (data) {
+                console.log(data)
+                $scope.comments = data;
+            }, function (err) {
+                console.log(err);
+            })
+    }
 
     $scope.editPostById = function(id){
         postServices.EditPostById(id,$scope.contentToChange)

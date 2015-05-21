@@ -12,7 +12,7 @@ input {
 }
 
 #friends{
-    margin-left: 65%;
+    float: right;
     width: 400px;
     height: 300px;
 }
@@ -22,3 +22,32 @@ input {
     text-align: center;
 }
 
+#news-feed > div > div:nth-child(1) > div > div.comments > div > div > div{
+    width: 70% !important;
+}
+
+.well{
+width: 50%;
+}
+.container{
+
+}
+
+#news-feed{
+    width: 50%;
+    float:left;
+}
+
+
+#news-feed>.col-xs-2{
+    width: 94% !important;
+}
+
+.panel-indent{
+    width: 85%;
+}
+.set-pic-size{
+    max-width: none!important;
+    height: 70px;
+    width: 70px;
+}

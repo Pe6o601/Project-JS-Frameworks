@@ -18,11 +18,11 @@
             <div ng-repeat='post in newsPosts'>
                 <link rel="stylesheet"
                       href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
-                <div class="container">
+                    <div class="container">
                     <div class="well">
                         <div class="media">
                             <a class="pull-left" href="#">
-                                <img errsrc class="media-object" src="{{post.author.profileImageData}}">
+                                <img errsrc class="media-object" ng-src="{{post.author.profileImageData}}">
                             </a>
 
                             <div class="media-body">
@@ -67,9 +67,8 @@
 
                     <div ng-show="showComments">
 
-                        <div class="container">
                             <div class="row">
-                                <div class="panel panel-default widget">
+                                <div class="panel panel-default widget pull-right panel-indent">
                                     <div class="panel-heading">
                                         <span class="glyphicon glyphicon-comment"></span>
 
@@ -79,11 +78,44 @@
                     78</span>
                                     </div>
                                     <div class="panel-body">
-                                        <ul class="list-group" ng-repeat='comment in post.comments'>
-                                            <li class="list-group-item">
+                                        <ul class="list-group" >
+                                            <li class="list-group-item" ng-repeat='comment in post.comments'>
                                                 <div class="row">
                                                     <div class="col-xs-2 col-md-1">
-                                                        <img errsrc ng-src="{{comment.author.profileImageData}}"
+                                                        <img class="set-pic-size" errsrc ng-src="{{comment.author.profileImageData}}"
+                                                             class="img-circle img-responsive" alt=""/></div>
+                                                    <div class="col-xs-10 col-md-11">
+                                                        <div class="comment-text">
+                                                            <h3>{{comment.commentContent}}</h3>
+                                                        </div>
+                                                        <div>
+
+                                                            By: <a href="#">{{comment.author.name}}</a> on
+                                                            {{comment.date|date}}
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="action">
+                                                        <button type="button" class="btn btn-primary btn-xs"
+                                                                title="Edit">
+                                                            <span class="glyphicon glyphicon-pencil"></span>
+                                                        </button>
+                                                        <button type="button" class="btn btn-success btn-xs"
+                                                                title="Approved">
+                                                            <span class="glyphicon glyphicon-ok"></span>
+                                                        </button>
+                                                        <button type="button" class="btn btn-danger btn-xs"
+                                                                title="Delete">
+                                                            <span class="glyphicon glyphicon-trash"></span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li ng-show="showMore" class="list-group-item" ng-repeat='comment in comments' ng-if="$index<comments.length-3">
+                                                <div class="row">
+                                                    <div class="col-xs-2 col-md-1">
+                                                        <img class="set-pic-size" errsrc ng-src="{{comment.author.profileImageData}}"
                                                              class="img-circle img-responsive" alt=""/></div>
                                                     <div class="col-xs-10 col-md-11">
                                                         <div class="comment-text">
@@ -115,8 +147,9 @@
                                         </ul>
                                     </div>
 
-                                    <a href="#" class="btn btn-primary btn-sm btn-block" role="button"><span
-                                            class="glyphicon glyphicon-refresh"></span> More</a>
+                                    <a ng-click=" showMore=showMore" class="btn btn-primary btn-sm btn-block" role="button"><span
+                                            class="glyphicon glyphicon-refresh" ></span> More</a>
+
                                 </div>
                             </div>
                         </div>
