@@ -5,10 +5,6 @@ SocialNetwork.controller('postController', function ($scope, postServices) {
     $scope.commentsToPost = [];
 
 
-    $scope.init = function (value) {
-        $scope.testInput = value;
-    }
-
     $scope.addPost = function () {
         postServices.AddPost()
             .then(function (data) {
@@ -27,6 +23,7 @@ SocialNetwork.controller('postController', function ($scope, postServices) {
             .then(function (data) {
                 $scope.busy = true;
                 var posts = data;
+                console.log(posts);
                 for (var i = 0; i < posts.length; i++) {
                     $scope.newsPosts.push(posts[i]);
                 }
@@ -37,14 +34,19 @@ SocialNetwork.controller('postController', function ($scope, postServices) {
             })
     };
 
-    $scope.addCommentToPost = function (postId) {
+    $scope.shoudShowForUser=function(username){
+        return username===sessionStorage['username'];
+    }
+
+    $scope.addCommentToPost = function (post) {
         var data = {
             commentContent: $scope.commentData.content
         }
         console.log($scope.commentData);
-        postServices.AddCommentToPost(postId, data)
+        postServices.AddCommentToPost(post.id, data)
             .then(function (data) {
-                console.log('yea');
+                post.comments.push(data);
+                post.totalCommentsCount++;
                 console.log(data);
             }, function (err) {
                 console.log(err);
@@ -62,14 +64,23 @@ SocialNetwork.controller('postController', function ($scope, postServices) {
     }
 
 
-    $scope.editPostById = function (id) {
-        postServices.EditPostById(id, $scope.contentToChange)
+    $scope.editPostById = function (post) {
+        var postData = {
+            postContent:$scope.editPostContent
+        }
+
+        console.log(postData)
+
+        postServices.EditPostById(post.id, postData)
             .then(function (data) {
-                console.log('yea');
+                post.postContent=data.content;
             }, function (err) {
                 console.log(err);
             })
     }
 
+    $scope.toggle = function() {
+        $scope.DSshow = !$scope.DSshow;
+    };
 
 });

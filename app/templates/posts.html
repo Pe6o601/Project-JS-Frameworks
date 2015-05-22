@@ -1,0 +1,155 @@
+<div infinite-scroll="nextPage()" infinite-scroll-distance='1'>
+    <div ng-repeat='post in newsPosts'>
+        <link rel="stylesheet"
+              href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
+        <div class="container">
+            <div class="well">
+                <div class="media">
+                    <a class="pull-left" href="#">
+                        <img errsrc class="media-object" ng-src="{{post.author.profileImageData}}">
+                    </a>
+
+                    <div class="media-body">
+                        <h4 class="media-heading">{{post.author.name}}</h4>
+
+                        <p class="text-right"></p>
+
+
+                        <p>{{post.postContent}}</p>
+
+                        <div ng-show="DSshow" ng-controller="postController">
+                            <input type="text" value="{{post.postContent}}" ng-model="editPostContent" id="editPost">
+                            <input type="button" ng-click="DSshow=!DSshow; editPostById(post)" value="Edit post"/></span>
+                        </div>
+                        <ul class="list-inline list-unstyled">
+                            <li><span><i class="glyphicon glyphicon-calendar"></i>{{post.date|date}}</span></li>
+                            <li>|</li>
+                                    <span ng-click="getCommentByPostId(post.id)"><i
+                                            class="glyphicon glyphicon-comment"></i> {{post.totalCommentsCount}} comments</span>
+                            <li>|</li>
+                            <li ng-show="shoudShowForUser(post.author.username)">
+                                <button ng-click="DSshow=!DSshow" type="button" class="btn btn-primary btn-xs"
+                                        title="{{currentUser}}">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <button ng-click="showContent=!showContent">comment</button>
+            <div ng-show="showContent" ng-controller="postController">
+                <form action="" ng-submit="addCommentToPost(post)">
+                    <input ng-model="commentData.content" value="" type="text">
+                    <input type="submit" value="Comment this post">
+                </form>
+            </div>
+
+            <div ng-show="showComments">
+
+                <div class="row">
+                    <div class="panel panel-default widget pull-right panel-indent">
+                        <div class="panel-heading">
+                            <span class="glyphicon glyphicon-comment"></span>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="list-group">
+                                <li class="list-group-item" ng-repeat='comment in post.comments'>
+                                    <div class="row">
+                                        <div class="col-xs-2 col-md-1">
+                                            <img class="set-pic-size" errsrc
+                                                 ng-src="{{comment.author.profileImageData}}"
+                                                 class="img-circle img-responsive" alt=""/></div>
+                                        <div class="col-xs-10 col-md-11">
+                                            <div class="comment-text">
+                                                <h3>{{comment.commentContent}}</h3>
+                                            </div>
+                                            <div>
+
+                                                By: <a href="#">{{comment.author.name}}</a> on
+                                                {{comment.date|date}}
+                                            </div>
+                                        </div>
+
+                                        <div class="action">
+                                            <button type="button" class="btn btn-primary btn-xs"
+                                                    title="Edit">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-success btn-xs"
+                                                    title="Approved">
+                                                <span class="glyphicon glyphicon-ok"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-danger btn-xs"
+                                                    title="Delete">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li ng-show="showMore" class="list-group-item" ng-repeat="comment in comments[post.id]" ng-if="$index>2">
+                                    <div class="row">
+                                        <div class="col-xs-2 col-md-1">
+                                            <img class="set-pic-size" errsrc
+                                                 ng-src="{{comment.author.profileImageData}}"
+                                                 class="img-circle img-responsive" alt=""/></div>
+                                        <div class="col-xs-10 col-md-11">
+                                            <div class="comment-text">
+                                                <h3>{{comment.commentContent}}</h3>
+                                            </div>
+                                            <div>
+
+                                                By: <a href="#">{{comment.author.name}}</a> on
+                                                {{comment.date|date}}
+                                            </div>
+                                        </div>
+
+                                        <div class="action">
+                                            <button type="button" class="btn btn-primary btn-xs"
+                                                    title="Edit">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-success btn-xs"
+                                                    title="Approved">
+                                                <span class="glyphicon glyphicon-ok"></span>
+                                            </button>
+                                            <button type="button" class="btn btn-danger btn-xs"
+                                                    title="Delete">
+                                                <span class="glyphicon glyphicon-trash"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <a ng-click="showMore=!showMore;"
+                                   class="btn btn-primary btn-sm btn-block" role="button"><span
+                                        class="glyphicon glyphicon-refresh"></span> More</a>
+
+
+
+                            </ul>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <!--<button ng-hide="showEditPost" ng-click="showEditPost=!showEditPost">edit post</button>-->
+    <!--<div ng-show="showEditPost">-->
+    <!--<form action="" ng-submit="editPostById(post.id)" ng-controller="homeController">-->
+    <!--<input ng-model="$scope.contentToChange.postContent" value="" type="text">-->
+    <!--<input type="submit" value="Edit post">-->
+    <!--</form>-->
+    <!-->
+</div>

@@ -51,9 +51,9 @@ SocialNetwork.factory('postServices', function ($http, $q) {
         return deferred.promise;
     }
 
-    service.EditPostById = function(postId,data){
+    service.EditPostById = function(postId,postData){
         var deferred = $q.defer();
-        $http.put(serviceUrl+"Posts/"+postId,data)
+        $http.put(serviceUrl+"Posts/"+postId,postData)
             .success(function (data) {
                 deferred.resolve(data);
             }).error(function (error) {

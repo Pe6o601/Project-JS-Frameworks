@@ -11,12 +11,17 @@ SocialNetwork.controller('homeController', function ($scope, userServices, $q) {
     $scope.logout = function () {
         userServices.Logout()
             .then(function (data) {
-                console.log('yea');
-                console.log(data);
+                sessionStorage.clear();
+                redirectToLogin();
             }, function (err) {
                 console.log(err);
             })
     };
+
+    $scope.redirectToLogin = function(){
+        $scope.searchedUser  = username;
+        $location.path('/');
+    }
 
 
 
