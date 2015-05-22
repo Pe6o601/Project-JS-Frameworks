@@ -5,6 +5,7 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
     $scope.commentsToPost = [];
 
 
+
     $scope.addPost = function () {
         var data = {
             postContent: $scope.postToSubmitContent,

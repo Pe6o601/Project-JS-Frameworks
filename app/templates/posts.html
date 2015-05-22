@@ -15,9 +15,9 @@
 
                         <p>{{post.postContent}}</p>
 
-                        <form id="editComment" ng-if="editComment===true" ng-submit="editPostById(post)" ng-controller="postController">
+                        <form id="editComment" ng-show="editComment===true" ng-submit="editPostById(post)" ng-controller="postController">
                             <input type="text" value="{{post.postContent}}" ng-model="editPostContent" id="editPost">
-                            <span><input type="submit" ng-click="editComment=false" value="Edit post"/></span>
+                            <span><input type="submit" ng-click="editComment=!editComment" value="Edit post"/></span>
                         </form>
                         <ul class="list-inline list-unstyled">
                             <li><span><i class="glyphicon glyphicon-calendar"></i>{{post.date|date}}</span></li>
@@ -26,7 +26,7 @@
                                             class="glyphicon glyphicon-comment"></i> {{post.totalCommentsCount}} comments</span>
                             <li>|</li>
                             <li ng-show="shoudShowForUser(post.author.username)">
-                                <button ng-click="editComment=true" type="button" class="btn btn-primary btn-xs"
+                                <button ng-click="editComment=!editComment" type="button" class="btn btn-primary btn-xs"
                                         title="{{currentUser}}">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                 </button>
