@@ -1,5 +1,5 @@
 'use strict';
-SocialNetwork.controller('friendsController', function ($scope, friendsServices, $location) {
+SocialNetwork.controller('friendsController', function ($scope, friendsServices, $location, $routeParams) {
 
     $scope.search = function(){
         friendsServices.SearchByName($scope.search.searchTerm)
@@ -20,16 +20,10 @@ SocialNetwork.controller('friendsController', function ($scope, friendsServices,
             })
     };
 
-    //todo mani go ot tyrsachata da zima prosot userrname  v direktiva
-    //tui dolu gi zima ama trqbva da gi printi na userWalla
-    //trqbva funckciq na ng-click koqto da zima username i posle kato se vika
-    //view to da gi typ4e
     $scope.getUserWall = function(){
-      //  console.log($scope);
-
         friendsServices.getUserWall(sessionStorage['searchedUser'])
            .then(function(data){
-                $scope.searchedUser= data;
+                $scope.searchedUser = data;
                 console.log(data);
            }, function (error) {
                console.log(error);
@@ -41,6 +35,19 @@ SocialNetwork.controller('friendsController', function ($scope, friendsServices,
             .then(function (data) {
                 console.log(data);
                $scope.myFriends = data;
+                $scope.friendsTotalCount = data.length;
+            }, function(err){
+                console.log(err);
+            })
+    };
+
+
+    $scope.showFriendsOfUser = function () {
+        friendsServices.showFriendsOfUser($routeParams.name)
+            .then(function (data) {
+                console.log(data);
+                $scope.myFriends = data.friends;
+                $scope.friendsTotalCount = data.totalCount;
             }, function(err){
                 console.log(err);
             })

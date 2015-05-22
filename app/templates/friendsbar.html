@@ -1,5 +1,4 @@
-<div ng-controller="friendsController" ng-init="showMyFriends()" id="friends">
-    <div id="total-friends"><p id="text-friends"><a>Friends total {{myFriends.length}}</a></p></div>
+    <div id="total-friends"><p id="text-friends"><a>Friends total {{friendsTotalCount}}</a></p></div>
 
     <div class="row">
         <div ng-repeat="friend in myFriends|limitTo:3">
@@ -19,4 +18,3 @@
             </div>
         </div>
     </div>
-</div>

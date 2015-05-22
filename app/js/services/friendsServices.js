@@ -92,6 +92,17 @@ SocialNetwork.factory('friendsServices', function ($http, $q) {
         return deferred.promise;
     };
 
+    service.showFriendsOfUser= function (user) {
+        var url5 = "http://softuni-social-network.azurewebsites.net/api/users/"+user+"/friends/preview";
+        var deferred = $q.defer();
+        $http.get(url5)
+            .success(function (data) {
+                deferred.resolve(data);
+            }).error(function (error) {
+                deferred.reject(error);
+            });
+        return deferred.promise;
+    }
 
 
     function GetHeaders() {

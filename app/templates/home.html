@@ -9,7 +9,10 @@
 
 <!--</div>-->
 <div id="mainContent">
-    <friendsbar></friendsbar>
+    <div ng-controller="friendsController" ng-init="showMyFriends()" id="friends">
+        <friendsbar></friendsbar>
+    </div>
+
 
     <div id="news-feed" ng-controller="postController">
         <h1>News Feed</h1>

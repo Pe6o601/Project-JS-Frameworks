@@ -45,7 +45,7 @@ SocialNetwork.controller('postController', function ($scope, postServices) {
         console.log($scope.commentData);
         postServices.AddCommentToPost(post.id, data)
             .then(function (data) {
-                post.comments.push(data);
+                post.comments.splice(0,0,data);
                 post.totalCommentsCount++;
                 console.log(data);
             }, function (err) {
