@@ -27,13 +27,13 @@ input {
 }
 
 .well{
-width: 65%;
+width: 200%;
 }
-.container{
 
-}
 
 #news-feed{
+    margin-left:45px;
+    margin-top: 10px;
     width: 50%;
     float:left;
 }
@@ -45,6 +45,9 @@ width: 65%;
 
 .panel-indent{
     width: 85%;
+}
+.comment-row{
+    width: 180%
 }
 .set-pic-size{
     max-width: none!important;

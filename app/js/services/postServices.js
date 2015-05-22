@@ -1,11 +1,11 @@
-SocialNetwork.factory('postServices', function ($http, $q) {
+SocialNetwork.factory('postServices', function ($http, $q, $routeParams) {
     //constant
     var serviceUrl = "http://softuni-social-network.azurewebsites.net/api/";
     var service = {};
 
-    service.AddPost = function (postData) {
+    service.addPost = function (postData) {
         var deferred = $q.defer();
-        $http.post(serviceUrl, postData)
+        $http.post(serviceUrl + 'posts', postData)
             .success(function (data) {
                 deferred.resolve(data);
             }).error(function (error) {
@@ -61,6 +61,21 @@ SocialNetwork.factory('postServices', function ($http, $q) {
             });
         return deferred.promise;
     }
+
+
+    service.userWallPosts = function (startPostId) {
+        var deferred = $q.defer();
+
+        var request = serviceUrl + "users/"+$routeParams.name+"/wall?StartPostId=" + (startPostId || "") + "&PageSize=5";
+        // console.log(request);
+        $http.get(request)
+            .success(function (data) {
+                deferred.resolve(data);
+            }).error(function (error) {
+                deferred.reject(error);
+            });
+        return deferred.promise;
+    };
 
 
     return service;

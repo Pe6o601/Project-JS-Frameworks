@@ -1,4 +1,4 @@
-SocialNetwork.controller('postController', function ($scope, postServices) {
+SocialNetwork.controller('postController', function ($scope, postServices, $routeParams) {
 
     $scope.username = sessionStorage['username'];
     $scope.comments = [];
@@ -6,9 +6,16 @@ SocialNetwork.controller('postController', function ($scope, postServices) {
 
 
     $scope.addPost = function () {
-        postServices.AddPost()
+        var data = {
+            postContent: $scope.postToSubmitContent,
+            username: $routeParams.name
+        };
+
+        postServices.addPost(data)
             .then(function (data) {
-                console.log(data);
+                console.log(data)
+                console.log($scope.userNewsPosts)
+                $scope.newsPosts.splice(0, 0, data);
             }, function (err) {
                 console.log(err);
             })
@@ -20,6 +27,26 @@ SocialNetwork.controller('postController', function ($scope, postServices) {
         }
         $scope.isBusy = true;
         postServices.NewsFeedPosts($scope.startPostId)
+            .then(function (data) {
+                $scope.busy = true;
+                var posts = data;
+                console.log(posts);
+                for (var i = 0; i < posts.length; i++) {
+                    $scope.newsPosts.push(posts[i]);
+                }
+                $scope.startPostId = $scope.newsPosts[$scope.newsPosts.length - 1].id;
+                $scope.isBusy = false;
+            }, function (err) {
+                console.log(err);
+            })
+    };
+
+    $scope.nextPageUser = function () {
+        if ($scope.isBusy) {
+            return;
+        }
+        $scope.isBusy = true;
+        postServices.userWallPosts($scope.startPostId)
             .then(function (data) {
                 $scope.busy = true;
                 var posts = data;

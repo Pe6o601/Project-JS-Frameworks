@@ -4,6 +4,4 @@ SocialNetwork.directive('comments', function(){
         templateUrl : 'templates/comments.html',
         controller: 'postController'
     }
-
-
 });
