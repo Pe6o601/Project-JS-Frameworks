@@ -14,7 +14,7 @@ SocialNetwork.controller('postController', function ($scope, postServices) {
             })
     }
 
-    $scope.nextPage = function () {
+    $scope.nextPageFeed = function () {
         if ($scope.isBusy) {
             return;
         }

@@ -13,6 +13,10 @@
 
     <div id="news-feed" ng-controller="postController">
         <h1>News Feed</h1>
-        <posts></posts>
+
+        <div infinite-scroll="nextPageFeed()" infinite-scroll-distance='1'>
+            <posts></posts>
         </div>
+
+    </div>
 </div>
