@@ -1,5 +1,5 @@
 'use strict';
-SocialNetwork.controller("authenticationController", function ($scope, userServices, $location) {
+SocialNetwork.controller("authenticationController", function ($scope, userServices, $location,notificationsService) {
     $scope.register = function () {
         $('#my-div').show();
         userServices.Register($scope.registerData)

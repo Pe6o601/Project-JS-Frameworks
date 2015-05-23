@@ -1,6 +1,6 @@
 'use strict';
 //, $location, mainData, authentication, notifyService
-SocialNetwork.controller('homeController', function ($scope, userServices, $q) {
+SocialNetwork.controller('homeController', function ($scope, userServices, $q,notificationsService) {
 
     $scope.username = sessionStorage['username'];
     $scope.startPostId = "";

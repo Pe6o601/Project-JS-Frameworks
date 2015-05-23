@@ -1,14 +1,16 @@
 function SetCredentials (serverData) {
     sessionStorage['accessToken'] = serverData.access_token;
     sessionStorage['username'] = serverData.userName;
-};
+}
 
 function SetHeaders ($http) {
     $http.defaults.headers.common = GetHeaders();
 }
 
-function isLogged(){
-    return sessionStorage['accessToken'];
+function authorizationCheck(location) {
+    if (!sessionStorage.getItem('accessToken')) {
+        location.path('/');
+    }
 }
 
 function GetHeaders() {

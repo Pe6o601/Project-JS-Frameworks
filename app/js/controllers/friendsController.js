@@ -1,5 +1,5 @@
 'use strict';
-SocialNetwork.controller('friendsController', function ($scope, friendsServices, $location, $routeParams, $rootScope) {
+SocialNetwork.controller('friendsController', function ($scope, friendsServices, $location, $routeParams, $rootScope,notificationsService) {
     
     $scope.search = function(){
         $('#my-div').show();
@@ -142,9 +142,10 @@ SocialNetwork.controller('friendsController', function ($scope, friendsServices,
                     }
 
                     console.log($rootScope.watingRequests.length)
-                    SocialNetwork.showSuccess('Accepted successfully', notificationsService);
                 })
                 $rootScope.watingRequests = tempArr;
+                SocialNetwork.showSuccess('Accepted successfully', notificationsService);
+
                 console.log($rootScope.watingRequestsLenght)
             }, function (error) {
                 SocialNetwork.showError(error, notificationsService);

@@ -1,4 +1,4 @@
-SocialNetwork.controller('postController', function ($scope, postServices, $routeParams) {
+SocialNetwork.controller('postController', function ($scope, postServices, $routeParams, notificationsService) {
 
     $scope.username = sessionStorage['username'];
     $scope.comments = [];
@@ -164,6 +164,7 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
                         break;
                     }
                 }
+
                 SocialNetwork.showSuccess('Deleted', notificationsService);
 
             }, function (error) {
