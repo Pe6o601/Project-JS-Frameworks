@@ -1,11 +1,11 @@
-SocialNetwork.controller("userController", function ($scope, userServices, $location) {
+SocialNetwork.controller("userController", function ($scope, userServices, $location, notificationsService) {
 
     $scope.changePassword = function () {
         userServices.changePassword($scope.changePasswordData)
             .then(function(data){
-                console.log(data);
+                SocialNetwork.showSuccess('Changed', notificationsService);
             }, function(error) {
-                console.log(error);
+                SocialNetwork.showError(error, notificationsService);
             });
         $location.path('/home');
     };
