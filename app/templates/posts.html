@@ -25,7 +25,7 @@
                                     <span ng-click="getCommentByPostId(post.id);showComments=!showComments"><i
                                             class="glyphicon glyphicon-comment"></i> {{post.totalCommentsCount}} comments</span>
                             <li>|</li>
-                            <like-post></like-post>
+                            <like-post ng-if="searchedUser.isFriend&&post.author.isFriend"></like-post>
                             <li ng-show="shoudShowForUser(post.author.username)">|
                                 <button ng-click="editComment=!editComment" type="button" class="btn btn-primary btn-xs"
                                         title="{{currentUser}}">
@@ -36,10 +36,10 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+                </div>
 
 
-            <button ng-click="showContent=!showContent">comment</button>
+            <button ng-if="searchedUser.isFriend&&post.author.isFriend" ng-click="showContent=!showContent">comment</button>
             <div ng-show="showContent" ng-controller="postController">
                 <form action="" ng-submit="addCommentToPost(post)">
                     <input ng-model="commentData.content" value="" type="text">
@@ -48,7 +48,6 @@
             </div>
 
             <div ng-show="showComments">
-
                 <comments></comments>
             </div>
         </div>

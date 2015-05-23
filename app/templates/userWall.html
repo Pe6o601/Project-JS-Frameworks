@@ -2,7 +2,7 @@
 <userwall></userwall>
 
 <div id="mainContent">
-    <div ng-controller="friendsController" ng-init="showFriendsOfUser()" id="friends">
+    <div ng-controller="friendsController" ng-if="searchedUser.isFriend" ng-init="showFriendsOfUser()" id="friends">
         <friendsbar></friendsbar>
         <add-post></add-post>
     </div>

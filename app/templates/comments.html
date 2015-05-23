@@ -35,7 +35,7 @@
                                     title="Delete">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
-                            <like-comment></like-comment>
+                            <like-comment  ng-if="searchedUser.isFriend&&post.author.isFriend"></like-comment>
                         </div>
                     </div>
                 </li>
