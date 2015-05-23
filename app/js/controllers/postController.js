@@ -87,11 +87,15 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
             })
     }
 
-    $scope.getCommentByPostId = function (id) {
-        postServices.GetCommentByPostId(id)
+    $scope.getCommentByPostId = function (post) {
+        postServices.GetCommentByPostId(post.id)
             .then(function (data) {
-                $scope.comments[id] = data;
-                console.log($scope.comments)
+
+                data.forEach(function (key,val) {
+                    if(val>2) {
+                        post.comments.push(key);
+                    }
+                })
             }, function (err) {
                 console.log(err);
             })
@@ -101,9 +105,9 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
     $scope.editPostById = function (post) {
         var postData = {
             postContent: $scope.editPostContent
-        }
+        };
 
-        console.log(postData)
+        console.log(postData);
 
         postServices.EditPostById(post.id, postData)
             .then(function (data) {
@@ -175,6 +179,47 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
                 console.log(err);
             })
     };
+
+    $scope.editComment = function (post, comment) {
+        postServices.editComment(post, comment, $scope.commentEdit)
+            .then(function (data) {
+
+               post.comments.forEach(function (key,val) {
+                    if(key.id==comment.id){
+                        key.commentContent=data.commentContent;
+                    }
+                })
+
+
+            }, function (err) {
+                console.log(err);
+            })
+    }
+    $scope.deleteComment = function (post, comment) {
+        postServices.deleteComment(post, comment)
+            .then(function (data) {
+                console.log('asd');
+                console.log(post);
+                var commentToDel;
+                    post['comments'].forEach(function (key,val) {
+                        if(key.id==comment.id){
+                            commentToDel=key;
+                        }
+                    })
+
+                for (var i = post.comments.length-1;i>=0; i--) {
+                    if (post.comments[i].id === commentToDel.id) {
+                        post.comments.splice(i, 1);
+                        break;
+                    }
+                }
+
+                post.totalCommentsCount--;
+
+            }, function (err) {
+                console.log(err);
+            })
+    }
 
 
     //$scope.toggle = function() {

@@ -139,6 +139,35 @@ SocialNetwork.factory('postServices', function ($http, $q, $routeParams) {
         return deferred.promise;
     };
 
+    service.editComment = function ( post, comment, commentEdit) {
+        var deferred = $q.defer();
+        SetHeaders($http);
+        var request = serviceUrl +'posts/'+ post.id +"/comments/" + comment.id;
+
+        $http.put(request, commentEdit)
+            .success(function (data) {
+                deferred.resolve(data);
+            }).error(function (error) {
+                deferred.reject(error);
+            });
+        return deferred.promise;
+    };
+
+
+    service.deleteComment = function ( post, comment) {
+        var deferred = $q.defer();
+        SetHeaders($http);
+        var request = serviceUrl +'posts/'+ post.id +"/comments/" + comment.id;
+        // console.log(request);
+        $http.delete(request)
+            .success(function (data) {
+                deferred.resolve(data);
+            }).error(function (error) {
+                deferred.reject(error);
+            });
+        return deferred.promise;
+    };
+
 
     return service;
 

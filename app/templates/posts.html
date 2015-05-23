@@ -20,7 +20,7 @@
                         <ul class="list-inline list-unstyled">
                             <li><span><i class="glyphicon glyphicon-calendar"></i>{{post.date|date}}</span></li>
                             <li>|</li>
-                                    <span ng-click="getCommentByPostId(post.id);showComments=!showComments"><i
+                                    <span ng-click="getCommentByPostId(post);showComments=!showComments"><i
                                             class="glyphicon glyphicon-comment"></i> {{post.totalCommentsCount}} comments</span>
                             <li ng-if="!((post.author.isFriend===false)&&(post.wallOwner.isFriend===false))">|
                                 <like-post></like-post>
@@ -71,7 +71,7 @@
     <!--<button ng-hide="showEditPost" ng-click="showEditPost=!showEditPost">edit post</button>-->
     <!--<div ng-show="showEditPost">-->
     <!--<form action="" ng-submit="editPostById(post.id)" ng-controller="homeController">-->
-    <!--<input ng-model="$scope.contentToChange.postContent" value="" type="text">-->
+    <!--<input ngdel="$scope.contentToChange.postContent" value="" type="text">-->
     <!--<input type="submit" value="Edit post">-->
     <!--</form>-->
     <!-->

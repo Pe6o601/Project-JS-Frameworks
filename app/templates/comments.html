@@ -5,7 +5,7 @@
         </div>
         <div class="panel-body">
             <ul class="list-group">
-                <li class="list-group-item" ng-repeat='comment in post.comments'>
+                <li class="list-group-item" ng-repeat='comment in post.comments|limitTo:3'>
                     <div class="row comment-row">
                         <div class="col-xs-2 col-md-1">
                             <img class="set-pic-size" errsrc
@@ -23,15 +23,16 @@
                         </div>
 
                         <div class="action">
-                            <button type="button" class="btn btn-primary btn-xs"
-                                    title="Edit">
+                            <button ng-if="isMe(comment.author)" type="button" class="btn btn-primary btn-xs"
+                                    title="Edit" ng-click="comment.edit=true">
                                 <span class="glyphicon glyphicon-pencil"></span>
+
                             </button>
-                            <button type="button" class="btn btn-success btn-xs"
-                                    title="Approved">
-                                <span class="glyphicon glyphicon-ok"></span>
-                            </button>
-                            <button type="button" class="btn btn-danger btn-xs"
+                            <form ng-show="comment.edit"  ng-submit="editComment(post, comment)"ng-controller="postController">
+                                <input ng-model="commentEdit.commentContent" type="text" value="{{comment.commentContent}}"/>
+                                <input type="submit" ng-click="comment.edit=!comment.edit" value="ok"/>
+                            </form>
+                            <button ng-if="isMe(post.author)||isMe(comment.author)" ng-click="deleteComment(post, comment)" type="button" class="btn btn-danger btn-xs"
                                     title="Delete">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
@@ -40,7 +41,7 @@
                     </div>
                 </li>
 
-                <li ng-show="showMore" class="list-group-item" ng-repeat="comment in comments[post.id]" ng-if="$index>2">
+                <li ng-show="showMore" class="list-group-item" ng-repeat="comment in post.comments" ng-if="$index>2">
                     <div class="row">
                         <div class="col-xs-2 col-md-1">
                             <img class="set-pic-size" errsrc
@@ -58,15 +59,16 @@
                         </div>
 
                         <div class="action">
-                            <button type="button" class="btn btn-primary btn-xs"
-                                    title="Edit">
+                            <button ng-if="isMe(comment.author)" type="button" class="btn btn-primary btn-xs"
+                                    title="Edit" ng-click="comment.edit=true">
                                 <span class="glyphicon glyphicon-pencil"></span>
+
                             </button>
-                            <button type="button" class="btn btn-success btn-xs"
-                                    title="Approved">
-                                <span class="glyphicon glyphicon-ok"></span>
-                            </button>
-                            <button type="button" class="btn btn-danger btn-xs"
+                            <form ng-show="comment.edit"  ng-submit="editComment(post, comment)"ng-controller="postController">
+                                <input ng-model="commentEdit.commentContent" type="text" value="{{comment.commentContent}}"/>
+                                <input type="submit" ng-click="comment.edit=!comment.edit" value="ok"/>
+                            </form>
+                            <button ng-if="isMe(post.author)||isMe(comment.author)" ng-click="deleteComment(post, comment)" type="button" class="btn btn-danger btn-xs"
                                     title="Delete">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
