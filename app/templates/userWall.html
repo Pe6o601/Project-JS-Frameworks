@@ -1,18 +1,23 @@
 <navbar></navbar>
-<userwall></userwall>
-
-<div id="mainContent">
-    <div ng-controller="friendsController" ng-if="searchedUser.isFriend" ng-init="showFriendsOfUser()" id="friends">
-        <friendsbar></friendsbar>
-        <add-post></add-post>
-    </div>
-
-
-    <div id="news-feed" ng-controller="postController">
-
-        <div infinite-scroll="nextPageUser()" infinite-scroll-distance='1'>
-            <posts></posts>
+<div ng-init="getUserWall()">
+    <userwall></userwall>
+    <div id="mainContent">
+        <div ng-if="wallOwner.isFriend" ng-init="showFriendsOfUser()" id="friends">
+                <friendsbar></friendsbar>
+                <add-post></add-post>
+        </div>
+        <div ng-if="wallOwner.username===username" ng-init="loadFriends()" id="friends">
+                <friendsbar></friendsbar>
+                <add-post></add-post>
         </div>
 
     </div>
 </div>
+
+<div id="news-feed" ng-controller="postController">
+
+    <div infinite-scroll="nextPageUser()" infinite-scroll-distance='1'>
+        <posts></posts>
+    </div>
+</div>
+

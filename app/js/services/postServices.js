@@ -128,6 +128,17 @@ SocialNetwork.factory('postServices', function ($http, $q, $routeParams) {
         return deferred.promise;
     }
 
+    service.deletePost = function (postId) {
+        var deferred = $q.defer();
+        $http.delete(serviceUrl + 'posts/'+postId)
+            .success(function (data) {
+                deferred.resolve(data);
+            }).error(function (error) {
+                deferred.reject(error);
+            });
+        return deferred.promise;
+    };
+
 
     return service;
 

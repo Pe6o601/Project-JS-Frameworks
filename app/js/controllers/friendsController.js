@@ -3,7 +3,6 @@ SocialNetwork.controller('friendsController', function ($scope, friendsServices,
 
 
 
-
     $scope.search = function(){
         friendsServices.SearchByName($scope.search.searchTerm)
             .then(function(data){
@@ -27,6 +26,7 @@ SocialNetwork.controller('friendsController', function ($scope, friendsServices,
         friendsServices.getUserWall(sessionStorage['searchedUser'])
            .then(function(data){
                 $scope.searchedUser = data;
+                $rootScope.wallOwner=data;
                 console.log(data);
            }, function (error) {
                console.log(error);

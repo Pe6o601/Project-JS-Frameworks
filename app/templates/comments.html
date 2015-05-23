@@ -35,7 +35,7 @@
                                     title="Delete">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
-                            <like-comment  ng-if="searchedUser.isFriend&&post.author.isFriend"></like-comment>
+                            <like-comment  ng-if="!((post.author.isFriend===false)&&(post.wallOwner.isFriend===false))"></like-comment>
                         </div>
                     </div>
                 </li>
@@ -70,6 +70,7 @@
                                     title="Delete">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </button>
+                            <like-comment  ng-if="!((post.author.isFriend===false)&&(post.wallOwner.isFriend===false))"></like-comment>
                         </div>
                     </div>
                 </li>

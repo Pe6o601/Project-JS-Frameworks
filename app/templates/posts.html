@@ -9,28 +9,48 @@
                     </a>
 
                     <div class="media-body">
-                        <h4 class="media-heading">{{post.author.name}}</h4>
+                        <h4 class="media-heading">{{post.author.name}} >> {{post.wallOwner.name}}</h4>
 
                         <p class="text-right"></p>
 
                         <p>{{post.postContent}}</p>
 
-                        <form id="editComment" ng-show="editComment===true" ng-submit="editPostById(post)" ng-controller="postController">
-                            <input type="text" value="{{post.postContent}}" ng-model="editPostContent" id="editPost">
-                            <span><input type="submit" ng-click="editComment=!editComment" value="Edit post"/></span>
-                        </form>
+
+
                         <ul class="list-inline list-unstyled">
                             <li><span><i class="glyphicon glyphicon-calendar"></i>{{post.date|date}}</span></li>
                             <li>|</li>
                                     <span ng-click="getCommentByPostId(post.id);showComments=!showComments"><i
                                             class="glyphicon glyphicon-comment"></i> {{post.totalCommentsCount}} comments</span>
-                            <li>|</li>
-                            <like-post ng-if="searchedUser.isFriend&&post.author.isFriend"></like-post>
-                            <li ng-show="shoudShowForUser(post.author.username)">|
-                                <button ng-click="editComment=!editComment" type="button" class="btn btn-primary btn-xs"
+                            <li ng-if="!((post.author.isFriend===false)&&(post.wallOwner.isFriend===false))">|
+                                <like-post></like-post>
+                            </li>
+                            <li ng-if="isMe(post.author)">|
+                                <button ng-click="post.edit = true" type="button" class="btn btn-primary btn-xs"
                                         title="{{currentUser}}">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                 </button>
+
+                                <form id="editComment" ng-show="post.edit" ng-submit="editPostById(post)" ng-controller="postController">
+                                    <input type="text" value="{{post.postContent}}" ng-model="editPostContent" id="editPost">
+                                    <span><input type="submit" ng-click="post.edit=!post.edit" value="Edit post"/></span>
+                                </form>
+
+                            </li>
+                            <li ng-if="isMe(post.author)||isMe(post.wallOwner)">|
+                                <button type="button" class="btn btn-danger btn-xs"
+                                        title="{{currentUser}}" ng-click="deletePost(post.id)">
+                                    <span class="glyphicon glyphicon-remove-sign"></span></button>
+                            </li>
+                            <li ng-if="!((post.author.isFriend===false)&&(post.wallOwner.isFriend===false))">|
+                                    <button ng-click="showContent=!showContent"class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-comment"></span>comment</button>
+                                    <span ng-show="showContent" ng-controller="postController">
+                                        <form action="" ng-submit="addCommentToPost(post)">
+                                            <input ng-model="commentData.content" value="" type="text">
+                                            <input type="submit" value="Comment this post">
+                                        </form>
+                                    </span>
+
                             </li>
 
                         </ul>
@@ -38,14 +58,6 @@
                 </div>
                 </div>
 
-
-            <button ng-if="searchedUser.isFriend&&post.author.isFriend" ng-click="showContent=!showContent">comment</button>
-            <div ng-show="showContent" ng-controller="postController">
-                <form action="" ng-submit="addCommentToPost(post)">
-                    <input ng-model="commentData.content" value="" type="text">
-                    <input type="submit" value="Comment this post">
-                </form>
-            </div>
 
             <div ng-show="showComments">
                 <comments></comments>

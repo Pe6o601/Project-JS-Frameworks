@@ -5,7 +5,6 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
     $scope.commentsToPost = [];
 
 
-
     $scope.addPost = function () {
         var data = {
             postContent: $scope.postToSubmitContent,
@@ -62,8 +61,15 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
             })
     };
 
-    $scope.shoudShowForUser=function(username){
-        return username===sessionStorage['username'];
+    $scope.isMe = function (author) {
+
+        if (author.username === sessionStorage['username']) {
+            return true
+        }
+
+        return false;
+
+        //()||
     }
 
     $scope.addCommentToPost = function (post) {
@@ -73,7 +79,7 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
         console.log($scope.commentData);
         postServices.AddCommentToPost(post.id, data)
             .then(function (data) {
-                post.comments.splice(0,0,data);
+                post.comments.splice(0, 0, data);
                 post.totalCommentsCount++;
                 console.log(data);
             }, function (err) {
@@ -94,18 +100,36 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
 
     $scope.editPostById = function (post) {
         var postData = {
-            postContent:$scope.editPostContent
+            postContent: $scope.editPostContent
         }
 
         console.log(postData)
 
         postServices.EditPostById(post.id, postData)
             .then(function (data) {
-                post.postContent=data.content;
+                post.postContent = data.content;
             }, function (err) {
                 console.log(err);
             })
     }
+
+    $scope.deletePost = function (postId) {
+        postServices.deletePost(postId)
+            .then(function (data) {
+                console.log(data);
+                console.log("kur")
+                console.log($scope.newsPosts);
+                for (var i = $scope.newsPosts.length-1;i>=0; i--) {
+                    if ($scope.newsPosts[i].id === postId) {
+                        $scope.newsPosts.splice(i, 1);
+                        break;
+                    }
+                }
+
+            }, function (err) {
+                console.log(err);
+            })
+    };
 
     $scope.likePost = function (post) {
         postServices.LikePost(post.id)
@@ -151,7 +175,6 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
                 console.log(err);
             })
     };
-
 
 
     //$scope.toggle = function() {
