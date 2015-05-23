@@ -7,9 +7,13 @@ function SetHeaders ($http) {
     $http.defaults.headers.common = GetHeaders();
 }
 
+function RemoveHeaders ($http){
+    delete $http.defaults.headers.common;
+}
+
 function authorizationCheck(location) {
     if (!sessionStorage.getItem('accessToken')) {
-        location.path('/');
+        location.path('/login');
     }
 }
 

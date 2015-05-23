@@ -9,14 +9,13 @@ SocialNetwork.config(function ($routeProvider) {
             templateUrl: 'templates/register.html',
             controller: 'authenticationController'
         })
-        .when('/', {
+        .when('/login', {
             templateUrl: 'templates/login.html',
             controller: 'authenticationController'
         })
 
         .when('/home', {
             templateUrl: 'templates/home.html',
-            controller: 'homeController'
         })
         .when('/changePassword', {
             templateUrl: 'templates/changePassword.html',
@@ -39,13 +38,15 @@ SocialNetwork.config(function ($routeProvider) {
         .when('/users/:name/friends', {
             controller: 'friendsController',
             templateUrl: function () {
-                return 'templates/userWall.html';
+                return 'templates/friends-of-friend.html';
             }
         })
-        .otherwise({redirectTo: '/'})
+        .otherwise({redirectTo: '/login'})
 }).run(function ($rootScope,$location) {
     $rootScope.$on('$locationChangeStart', function () {
-        if(!$location.path().indexOf('register'))
-        authorizationCheck($location);
+        if($location.path().indexOf('register')===-1)        {
+            authorizationCheck($location);
+        }
+
     });
 });

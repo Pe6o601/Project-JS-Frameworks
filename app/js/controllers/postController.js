@@ -3,6 +3,9 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
     $scope.username = sessionStorage['username'];
     $scope.comments = [];
     $scope.commentsToPost = [];
+    $scope.startPostId = "";
+    $scope.newsPosts = [];
+    $scope.isBusy = false;
 
 
     $scope.addPost = function () {
