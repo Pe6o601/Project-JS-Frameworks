@@ -6,6 +6,8 @@ SocialNetwork.controller("userController", function ($scope, userServices, $loca
                 SocialNetwork.showSuccess('Changed', notificationsService);
             }, function(error) {
                 SocialNetwork.showError(error, notificationsService);
+            }).finally(function () {
+                $('#my-div').hide();
             });
         $location.path('/home');
     };
@@ -15,16 +17,23 @@ SocialNetwork.controller("userController", function ($scope, userServices, $loca
             .then(function(data) {
                 $scope.editData = data;
             }, function (error) {
+                SocialNetwork.showError(error, notificationsService);
                 console.log(error);
+            }).finally(function () {
+                $('#my-div').hide();
             });
     };
 
     $scope.editProfile = function() {
         userServices.editProfile($scope.editData)
             .then(function (data) {
+                SocialNetwork.showSuccess('Profile Changed', notificationsService);
                 console.log(data);
             }, function (error) {
+                SocialNetwork.showError(error, notificationsService);
                 console.log(error);
+            }).finally(function () {
+                $('#my-div').hide();
             })
     };
 

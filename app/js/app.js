@@ -30,7 +30,13 @@ SocialNetwork.config(function ($routeProvider) {
             templateUrl: 'templates/friends.html',
             controller: 'friendsController'
         })
-        .when('/users/:name*', {
+        .when('/users/:name', {
+            controller: 'friendsController',
+            templateUrl: function () {
+                return 'templates/userWall.html';
+            }
+        })
+        .when('/users/:name/friends', {
             controller: 'friendsController',
             templateUrl: function () {
                 return 'templates/userWall.html';

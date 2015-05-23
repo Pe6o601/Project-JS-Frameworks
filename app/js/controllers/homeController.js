@@ -13,6 +13,7 @@ SocialNetwork.controller('homeController', function ($scope, userServices, $q) {
             .then(function (data) {
                 sessionStorage.clear();
                 redirectToLogin();
+                SocialNetwork.showSuccess('Why you leave us', notificationsService);
             }, function (err) {
                 console.log(err);
             })

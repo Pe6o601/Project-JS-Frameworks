@@ -7,6 +7,10 @@ function SetHeaders ($http) {
     $http.defaults.headers.common = GetHeaders();
 }
 
+function isLogged(){
+    return sessionStorage['accessToken'];
+}
+
 function GetHeaders() {
     return {
         'Authorization': 'Bearer ' + sessionStorage['accessToken']
