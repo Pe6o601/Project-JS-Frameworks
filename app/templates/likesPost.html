@@ -1,0 +1,6 @@
+<a ng-if="!post.liked" ng-click="likePost(post)" class="btn btn-primary btn-primary">
+    <span class="glyphicon glyphicon-thumbs-up"></span>
+    <span class="badge">{{post.likesCount}}</span></a>
+<a ng-if="post.liked" ng-click="unLikePost(post)" class="btn btn-primary btn-primary">
+    <span class="glyphicon glyphicon-thumbs-down"></span>
+    <span class="badge">{{post.likesCount}}</span></a></a>

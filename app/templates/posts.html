@@ -25,12 +25,14 @@
                                     <span ng-click="getCommentByPostId(post.id);showComments=!showComments"><i
                                             class="glyphicon glyphicon-comment"></i> {{post.totalCommentsCount}} comments</span>
                             <li>|</li>
-                            <li ng-show="shoudShowForUser(post.author.username)">
+                            <like-post></like-post>
+                            <li ng-show="shoudShowForUser(post.author.username)">|
                                 <button ng-click="editComment=!editComment" type="button" class="btn btn-primary btn-xs"
                                         title="{{currentUser}}">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                 </button>
                             </li>
+
                         </ul>
                     </div>
                 </div>

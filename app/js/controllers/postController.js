@@ -107,8 +107,31 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
             })
     }
 
-    $scope.toggle = function() {
-        $scope.DSshow = !$scope.DSshow;
+    $scope.likePost = function (post) {
+        postServices.LikePost(post.id)
+            .then(function (data) {
+                post.liked = true;
+                post.likesCount++;
+            }, function (err) {
+                console.log(err);
+            })
     };
+
+    $scope.unLikePost = function (post) {
+        postServices.UnLikePost(post.id)
+            .then(function (data) {
+                post.liked = false;
+                post.likesCount--;
+                console.log('disLiked');
+            }, function (err) {
+                console.log(err);
+            })
+    };
+
+
+
+    //$scope.toggle = function() {
+    //    $scope.DSshow = !$scope.DSshow;
+    //};
 
 });

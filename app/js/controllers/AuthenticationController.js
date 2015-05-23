@@ -21,4 +21,12 @@ SocialNetwork.controller("authenticationController", function ($scope, userServi
             });
 
     };
+
+    $scope.isLogged= function () {
+        if(sessionStorage['accessToken']){
+            return true;
+        }else{
+            return false;
+        }
+    }
 });

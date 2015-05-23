@@ -1,25 +1,18 @@
-<navbar></navbar>
+    <navbar></navbar>
 
 
-<!--<div ng-controller="homeController">-->
-
-<!--<h1><a>{{username}}</a></h1>-->
-
-<!--<div ng-click="logout()">Logout</div>-->
-
-<!--</div>-->
-<div id="mainContent">
-    <div ng-controller="friendsController" ng-init="showMyFriends()" id="friends">
-        <friendsbar></friendsbar>
-    </div>
-
-
-    <div id="news-feed" ng-controller="postController">
-        <h1>News Feed</h1>
-
-        <div infinite-scroll="nextPageFeed()" infinite-scroll-distance='1'>
-            <posts></posts>
+    <div id="mainContent">
+        <div ng-controller="friendsController" ng-init="showMyFriends()" id="friends">
+            <friendsbar></friendsbar>
         </div>
 
+
+        <div id="news-feed" ng-controller="postController">
+            <h1>News Feed</h1>
+
+            <div infinite-scroll="nextPageFeed()" infinite-scroll-distance='1'>
+                <posts></posts>
+            </div>
+
+        </div>
     </div>
-</div>

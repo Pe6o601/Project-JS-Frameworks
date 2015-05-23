@@ -77,6 +77,29 @@ SocialNetwork.factory('postServices', function ($http, $q, $routeParams) {
         return deferred.promise;
     };
 
+    service.LikePost = function(postId){
+        var deferred = $q.defer();
+        //api/Posts/1/likes
+        $http.post(serviceUrl+"Posts/"+postId+ "/likes")
+            .success(function (data) {
+                deferred.resolve(data);
+            }).error(function (error) {
+                deferred.reject(error);
+            });
+        return deferred.promise;
+    }
+
+    service.UnLikePost = function(postId){
+        var deferred = $q.defer();
+        $http.delete(serviceUrl+"Posts/"+postId+ "/likes")
+            .success(function (data) {
+                deferred.resolve(data);
+            }).error(function (error) {
+                deferred.reject(error);
+            });
+        return deferred.promise;
+    }
+
 
     return service;
 
