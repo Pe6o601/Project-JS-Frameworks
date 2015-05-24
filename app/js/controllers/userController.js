@@ -1,5 +1,6 @@
 SocialNetwork.controller("userController", function ($scope, userServices, $location, notificationsService) {
 
+
     $scope.changePassword = function () {
         userServices.changePassword($scope.changePasswordData)
             .then(function(data){

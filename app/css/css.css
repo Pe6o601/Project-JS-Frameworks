@@ -1,3 +1,7 @@
+*{
+    word-wrap: break-word;
+}
+
 input {
     display: block;
 }
@@ -6,6 +10,13 @@ input {
     /*border:1px solid black;*/
 
 /*}*/
+#fullFriendBar{
+    margin-top: 5%;
+}
+#fullFriendBar>img{
+    width: 60px;
+    height: 60px;
+}
 
 #mainContent{
     margin-top: 5%;
@@ -73,10 +84,12 @@ width: 200%;
 }
 .comment-row{
     width: 180%
+
 }
 
 .comment-row-boot{
     width: 200%
+
 }
 .set-pic-size{
     max-width: none!important;

@@ -1,10 +1,16 @@
-<div ng-init="showFriendsOfUser()">
+<navbar></navbar>
+<div id="friends" ng-init="showFullFriendsOfUser()">
     <span> Friends ({{myFriends.length}} total)</span>
     <input type="search" id="searchFriends" ng-model="input" ng-keyup="loadFriends()">
-    <ul>
-        <li ng-repeat="friend in myFriends | filter:input">
-            <img ng-src="{{friend.profileImageData}}">
-            <span>{{friend.name}}</span>
-        </li>
-    </ul>
+
+    <div class="row">
+        <div ng-repeat="friend in myFriends | filter:input" class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img errsrc ng-src="{{friend.profileImageData}}" alt="...">
+                <div class="caption">
+                    <h3>{{friend.name}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

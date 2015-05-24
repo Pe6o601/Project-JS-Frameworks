@@ -1,4 +1,4 @@
-SocialNetwork.factory('friendsServices', function ($http, $q) {
+SocialNetwork.factory('friendsServices', function ($http, $q,$routeParams) {
     var serviceUrl = "http://softuni-social-network.azurewebsites.net/api/";
     var service = {};
 
@@ -36,8 +36,9 @@ SocialNetwork.factory('friendsServices', function ($http, $q) {
         return deferred.promise;
     };
 
-    var url3 = "http://softuni-social-network.azurewebsites.net/api/me/friends";
     service.getMyFriends = function () {
+        var url3 = "http://softuni-social-network.azurewebsites.net/api/me/friends";
+
         var deferred = $q.defer();
         $http.get(url3)
             .success(function (data) {
@@ -48,6 +49,18 @@ SocialNetwork.factory('friendsServices', function ($http, $q) {
         return deferred.promise;
     };
 
+    //http://softuni-social-network.azurewebsites.net/api/users/John/friends
+    service.getUserFriends = function () {
+        var url3 = "http://softuni-social-network.azurewebsites.net/api/users/"+$routeParams.name+"/friends";
+        var deferred = $q.defer();
+        $http.get(url3)
+            .success(function (data) {
+                deferred.resolve(data);
+            }).error(function (error) {
+                deferred.reject(error);
+            });
+        return deferred.promise;
+    };
     //get friend requests
     var url4 = "http://softuni-social-network.azurewebsites.net/api/me/requests";
     service.getReceivedRequests = function () {

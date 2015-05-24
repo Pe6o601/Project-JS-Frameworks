@@ -1,6 +1,8 @@
 'use strict';
 SocialNetwork.controller('friendsController', function ($scope, friendsServices, $location, $routeParams, $rootScope,notificationsService) {
-    
+
+
+
     $scope.search = function(){
         $('#my-div').show();
         friendsServices.SearchByName($scope.search.searchTerm)
@@ -33,7 +35,9 @@ SocialNetwork.controller('friendsController', function ($scope, friendsServices,
         friendsServices.getUserWall(sessionStorage['searchedUser'])
            .then(function(data){
                 $scope.searchedUser = data;
-                $rootScope.wallOwner=data;
+                $scope.$apply(function () {
+                    $scope.wallOwner=data;
+                })
                 console.log(data);
            }, function (error) {
                 SocialNetwork.showError(error, notificationsService);
@@ -49,6 +53,21 @@ SocialNetwork.controller('friendsController', function ($scope, friendsServices,
             .then(function (data) {
                 console.log(data);
                $scope.myFriends = data;
+                $scope.friendsTotalCount = data.length;
+            }, function(error){
+                SocialNetwork.showError(error, notificationsService);
+                console.log(error);
+            }).finally(function () {
+                $('#my-div').hide();
+            })
+    };
+
+    $scope.showFullFriendsOfUser = function () {
+        $('#my-div').show();
+        friendsServices.getUserFriends()
+            .then(function (data) {
+                console.log(data);
+                $scope.myFriends = data;
                 $scope.friendsTotalCount = data.length;
             }, function(error){
                 SocialNetwork.showError(error, notificationsService);
