@@ -34,7 +34,8 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
 
     $scope.nextPageFeed = function () {
         $('#my-div').show();
-        if ($scope.isBusy) {
+        if ($scope.isBusy||$scope.startPostId) {
+            $('#my-div').hide();
             return;
         }
         $scope.isBusy = true;
@@ -59,7 +60,8 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
 
     $scope.nextPageUser = function () {
         $('#my-div').show();
-        if ($scope.isBusy) {
+        if ($scope.isBusy||$scope.newsPosts.length===0) {
+            $('#my-div').hide();
             return;
         }
         $scope.isBusy = true;

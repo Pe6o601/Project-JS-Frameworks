@@ -45,11 +45,11 @@
                                     <span class="glyphicon glyphicon-remove-sign"></span></button>
                             </li>
                             <li>|
-                                    <button ng-if="post.author.isFriend||post.wallOwner.isFriend || post.wallOwner.username ===username" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-comment"></span>comment</button>
-                                    <span ng-controller="postController">
-                                        <form action="" ng-submit="addCommentToPost(post)">
+                                    <button ng-if="post.author.isFriend||post.wallOwner.isFriend || post.wallOwner.username ===username" ng-click="post.edit=!post.edit" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-comment"></span>comment</button>
+                                    <span >
+                                        <form action="" ng-show="post.edit" ng-submit="addCommentToPost(post)" ng-controller="postController">
                                             <input ng-model="commentData.content" value="" type="text">
-                                            <input type="submit" value="Comment this post">
+                                            <input type="submit" value="Comment this post" ng-click="post.edit=!post.edit">
                                         </form>
                                     </span>
 
