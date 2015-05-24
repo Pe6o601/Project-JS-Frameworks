@@ -1,18 +1,24 @@
 'use strict';
-SocialNetwork.controller('friendsController', function ($scope, friendsServices, $location, $routeParams, $rootScope,notificationsService) {
+SocialNetwork.controller('friendsController', function ($scope, friendsServices, $location, $routeParams, $rootScope,notificationsService, $http) {
+
+    SetHeaders($http);
 
     $scope.search = function(){
         $('#my-div').show();
-        friendsServices.SearchByName($scope.search.searchTerm)
-            .then(function(data){
-                console.log(data);
-               $scope.findedUsers = data;
-            }, function(error){
-                SocialNetwork.showError(error, notificationsService);
-                console.log(error);
-            }).finally(function () {
-                $('#my-div').hide();
-            })
+        if(!$scope.search.searchTerm){
+            $('#my-div').hide();
+        }else {
+            friendsServices.SearchByName($scope.search.searchTerm)
+                .then(function (data) {
+                    console.log(data);
+                    $scope.findedUsers = data;
+                }, function (error) {
+                    SocialNetwork.showError(error, notificationsService);
+                    console.log(error);
+                }).finally(function () {
+                    $('#my-div').hide();
+                })
+        }
     };
 
     $scope.loadFriends = function() {

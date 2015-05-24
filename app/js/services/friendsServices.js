@@ -24,10 +24,11 @@ SocialNetwork.factory('friendsServices', function ($http, $q,$routeParams) {
         return defer.promise;
     };
 
-    var url2 = "http://softuni-social-network.azurewebsites.net/api/users/";
     service.getUserWall = function (userName) {
         var deferred = $q.defer();
-        $http.get(url2 + userName)
+        var request = "http://softuni-social-network.azurewebsites.net/api/users/"+userName;
+
+        $http.get(request)
             .success(function (data) {
                 deferred.resolve(data);
             }).error(function (error) {
@@ -37,10 +38,9 @@ SocialNetwork.factory('friendsServices', function ($http, $q,$routeParams) {
     };
 
     service.getMyFriends = function () {
-        var url3 = "http://softuni-social-network.azurewebsites.net/api/me/friends";
-
+        var request = serviceUrl+"me/friends";
         var deferred = $q.defer();
-        $http.get(url3)
+        $http.get(request)
             .success(function (data) {
                 deferred.resolve(data);
             }).error(function (error) {
@@ -49,11 +49,10 @@ SocialNetwork.factory('friendsServices', function ($http, $q,$routeParams) {
         return deferred.promise;
     };
 
-    //http://softuni-social-network.azurewebsites.net/api/users/John/friends
     service.getUserFriends = function () {
-        var url3 = "http://softuni-social-network.azurewebsites.net/api/users/"+$routeParams.name+"/friends";
+        var request = serviceUrl+"users/"+$routeParams.name+"/friends";
         var deferred = $q.defer();
-        $http.get(url3)
+        $http.get(request)
             .success(function (data) {
                 deferred.resolve(data);
             }).error(function (error) {
@@ -61,11 +60,11 @@ SocialNetwork.factory('friendsServices', function ($http, $q,$routeParams) {
             });
         return deferred.promise;
     };
-    //get friend requests
-    var url4 = "http://softuni-social-network.azurewebsites.net/api/me/requests";
+
     service.getReceivedRequests = function () {
+        var request = serviceUrl+"me/requests"
         var deferred = $q.defer();
-        $http.get(url4)
+        $http.get(request)
             .success(function (data) {
                 deferred.resolve(data);
             }).error(function (error) {
@@ -78,9 +77,9 @@ SocialNetwork.factory('friendsServices', function ($http, $q,$routeParams) {
 
 
     service.acceptFriendRequest = function (userId) {
-        var url5 = "http://softuni-social-network.azurewebsites.net/api/me/requests/"+userId+"?status=approved";
+        var request = serviceUrl+"me/requests/"+userId+"?status=approved";
         var deferred = $q.defer();
-        $http.put(url5)
+        $http.put(request)
             .success(function (data) {
                 deferred.resolve(data);
             }).error(function (error) {
@@ -90,13 +89,11 @@ SocialNetwork.factory('friendsServices', function ($http, $q,$routeParams) {
     };
 
 
-    $http.defaults.headers.common = GetHeaders();
     service.rejectFriendRequest = function (userId) {
-        //http://softuni-social-network.azurewebsites.net/api/me/requests/2?status=rejected
 
-        var url5 = "http://softuni-social-network.azurewebsites.net/api/me/requests/"+userId+"?status=rejected";
+        var request = serviceUrl+ "me/requests/"+userId+"?status=rejected";
         var deferred = $q.defer();
-        $http.put(url5)
+        $http.put(request)
             .success(function (data) {
                 deferred.resolve(data);
             }).error(function (error) {
@@ -106,9 +103,9 @@ SocialNetwork.factory('friendsServices', function ($http, $q,$routeParams) {
     };
 
     service.showFriendsOfUser= function (user) {
-        var url5 = "http://softuni-social-network.azurewebsites.net/api/users/"+user+"/friends/preview";
+        var request = serviceUrl+"users/"+user+"/friends/preview";
         var deferred = $q.defer();
-        $http.get(url5)
+        $http.get(request)
             .success(function (data) {
                 deferred.resolve(data);
             }).error(function (error) {

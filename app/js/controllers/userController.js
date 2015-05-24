@@ -1,5 +1,6 @@
-SocialNetwork.controller("userController", function ($scope, userServices, $location, notificationsService) {
+SocialNetwork.controller("userController", function ($scope, userServices, $location, notificationsService, $http) {
 
+    SetHeaders($http);
 
     $scope.changePassword = function () {
         userServices.changePassword($scope.changePasswordData)

@@ -143,7 +143,6 @@ SocialNetwork.factory('postServices', function ($http, $q, $routeParams) {
         var deferred = $q.defer();
         SetHeaders($http);
         var request = serviceUrl +'posts/'+ post.id +"/comments/" + comment.id;
-
         $http.put(request, commentEdit)
             .success(function (data) {
                 deferred.resolve(data);
