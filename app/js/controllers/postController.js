@@ -5,7 +5,7 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
     $scope.commentsToPost = [];
     $scope.startPostId = "";
     $scope.isBusy = false;
-    $scope.init= function () {
+    $scope.init = function () {
         $scope.newsPosts = [];
     }
 
@@ -19,14 +19,14 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
 
         postServices.addPost(data)
             .then(function (data) {
-                
-                
+
+
                 $scope.newsPosts.splice(0, 0, data);
                 SocialNetwork.showSuccess('Post added', notificationsService);
 
             }, function (error) {
                 SocialNetwork.showError(error, notificationsService);
-                
+
             }).finally(function () {
                 $('#my-div').hide();
             })
@@ -34,7 +34,7 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
 
     $scope.nextPageFeed = function () {
         $('#my-div').show();
-        if ($scope.isBusy||$scope.startPostId) {
+        if ($scope.isBusy) {
             $('#my-div').hide();
             return;
         }
@@ -44,15 +44,17 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
             .then(function (data) {
                 $scope.busy = true;
                 var posts = data;
-                
+
                 for (var i = 0; i < posts.length; i++) {
                     $scope.newsPosts.push(posts[i]);
                 }
-                $scope.startPostId = $scope.newsPosts[$scope.newsPosts.length - 1].id;
+                if($scope.newsPosts.length>0) {
+                    $scope.startPostId = $scope.newsPosts[$scope.newsPosts.length - 1].id;
+                }
                 $scope.isBusy = false;
             }, function (error) {
                 SocialNetwork.showError(error, notificationsService);
-                
+
             }).finally(function () {
                 $('#my-div').hide();
             })
@@ -60,7 +62,7 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
 
     $scope.nextPageUser = function () {
         $('#my-div').show();
-        if ($scope.isBusy||$scope.newsPosts.length===0) {
+        if ($scope.isBusy) {
             $('#my-div').hide();
             return;
         }
@@ -69,16 +71,17 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
             .then(function (data) {
                 $scope.busy = true;
                 var posts = data;
-                
+
                 for (var i = 0; i < posts.length; i++) {
                     $scope.newsPosts.push(posts[i]);
                 }
-
-                $scope.startPostId = $scope.newsPosts[$scope.newsPosts.length - 1].id;
+                if($scope.newsPosts.length>0) {
+                    $scope.startPostId = $scope.newsPosts[$scope.newsPosts.length - 1].id;
+                }
                 $scope.isBusy = false;
             }, function (error) {
                 SocialNetwork.showError(error, notificationsService);
-                
+
             }).finally(function () {
                 $('#my-div').hide();
             })
@@ -100,17 +103,17 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
         var data = {
             commentContent: $scope.commentData.content
         }
-        
+
         postServices.AddCommentToPost(post.id, data)
             .then(function (data) {
                 post.comments.splice(0, 0, data);
                 post.totalCommentsCount++;
-                
+
                 SocialNetwork.showSuccess('Comment added', notificationsService);
 
             }, function (error) {
                 SocialNetwork.showError(error, notificationsService);
-                
+
             }).finally(function () {
                 $('#my-div').hide();
             })
@@ -131,7 +134,7 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
                 })
             }, function (error) {
                 SocialNetwork.showError(error, notificationsService);
-                
+
             }).finally(function () {
                 $('#my-div').hide();
             })
@@ -144,7 +147,6 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
             postContent: $scope.editPostContent
         };
 
-        
 
         postServices.EditPostById(post.id, postData)
             .then(function (data) {
@@ -153,7 +155,7 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
 
             }, function (error) {
                 SocialNetwork.showError(error, notificationsService);
-                
+
             }).finally(function () {
                 $('#my-div').hide();
             })
@@ -163,8 +165,8 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
         $('#my-div').show();
         postServices.deletePost(postId)
             .then(function (data) {
-                
-                
+
+
                 for (var i = $scope.newsPosts.length - 1; i >= 0; i--) {
                     if ($scope.newsPosts[i].id === postId) {
                         $scope.newsPosts.splice(i, 1);
@@ -176,7 +178,7 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
 
             }, function (error) {
                 SocialNetwork.showError(error, notificationsService);
-                
+
             }).finally(function () {
                 $('#my-div').hide();
             })
@@ -190,7 +192,7 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
                 post.likesCount++;
             }, function (error) {
                 SocialNetwork.showError(error, notificationsService);
-                
+
             }).finally(function () {
                 $('#my-div').hide();
             })
@@ -202,10 +204,10 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
             .then(function (data) {
                 post.liked = false;
                 post.likesCount--;
-                
+
             }, function (error) {
                 SocialNetwork.showError(error, notificationsService);
-                
+
             }).finally(function () {
                 $('#my-div').hide();
             })
@@ -213,15 +215,15 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
 
     $scope.likeComment = function (post, comment) {
         $('#my-div').show();
-        
+
         postServices.likeComment(post.id, comment.id)
             .then(function (data) {
                 comment.liked = true;
                 comment.likesCount++;
-                
+
             }, function (error) {
                 SocialNetwork.showError(error, notificationsService);
-                
+
             }).finally(function () {
                 $('#my-div').hide();
             })
@@ -229,15 +231,15 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
 
     $scope.unLikeComment = function (post, comment) {
         $('#my-div').show();
-        
+
         postServices.unLikeComment(post.id, comment.id)
             .then(function (data) {
                 comment.liked = false;
                 comment.likesCount--;
-                
+
             }, function (error) {
                 SocialNetwork.showError(error, notificationsService);
-                
+
             }).finally(function () {
                 $('#my-div').hide();
             })
@@ -258,7 +260,7 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
 
             }, function (error) {
                 SocialNetwork.showError(error, notificationsService);
-                
+
             }).finally(function () {
                 $('#my-div').hide();
             })
@@ -267,8 +269,8 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
         $('#my-div').show();
         postServices.deleteComment(post, comment)
             .then(function (data) {
-                
-                
+
+
                 var commentToDel;
                 post['comments'].forEach(function (key, val) {
                     if (key.id == comment.id) {
@@ -288,7 +290,7 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
 
             }, function (error) {
                 SocialNetwork.showError(error, notificationsService);
-                
+
             }).finally(function () {
                 $('#my-div').hide();
             })
