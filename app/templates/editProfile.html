@@ -1,8 +1,8 @@
 <form ng-controller="userController" ng-init="getUserData()" ng-submit="editProfile()">
     <label for="name">Full name:</label>
-    <input ng-model="editData.name" type="text" placeholder={{name}} id="name">
+    <input ng-model="editData.name" type="text" value="{{name}}" id="name">
     <label for="email">Email:</label>
-    <input ng-model="editData.email" type="text" placeholder={{email}} id="email">
+    <input ng-model="editData.email" type="text" value="{{email}}" id="email">
     <label for="maleGender">Male</label>
     <input ng-model="editData.gender" ng-value="1" type="radio" id="maleGender" name="gender" value="Male">
     <label for="femaleGender">Female</label>
