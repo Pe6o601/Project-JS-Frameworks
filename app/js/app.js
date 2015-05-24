@@ -1,6 +1,6 @@
 'use strict';
 
-var SocialNetwork = angular.module('SocialNetwork', ['ngRoute', 'ui.bootstrap', 'angular-loading-bar', 'infinite-scroll', 'customFilters']);
+var SocialNetwork = angular.module('SocialNetwork', ['ngRoute', 'ui.bootstrap', 'angular-loading-bar', 'infinite-scroll', 'customFilters', 'rt.popup']);
 
 
 SocialNetwork.config(function ($routeProvider) {
@@ -15,7 +15,7 @@ SocialNetwork.config(function ($routeProvider) {
         })
 
         .when('/home', {
-            templateUrl: 'templates/home.html',
+            templateUrl: 'templates/home.html'
         })
         .when('/changePassword', {
             templateUrl: 'templates/changePassword.html',

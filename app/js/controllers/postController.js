@@ -5,8 +5,9 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
     $scope.commentsToPost = [];
     $scope.startPostId = "";
     $scope.isBusy = false;
-    $scope.newsPosts = [];
-
+    $scope.init= function () {
+        $scope.newsPosts = [];
+    }
 
 
     $scope.addPost = function () {
@@ -20,10 +21,7 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
             .then(function (data) {
                 console.log(data)
                 console.log($scope.newsPosts)
-                $scope.$apply(function () {
-                    $scope.newsPosts.splice(0, 0, data);
-
-                })
+                $scope.newsPosts.splice(0, 0, data);
                 SocialNetwork.showSuccess('Post added', notificationsService);
 
             }, function (error) {
@@ -47,9 +45,7 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
                 var posts = data;
                 console.log(posts);
                 for (var i = 0; i < posts.length; i++) {
-                    $scope.$apply(function () {
-                        $scope.newsPosts.push(posts[i]);
-                    })
+                    $scope.newsPosts.push(posts[i]);
                 }
                 $scope.startPostId = $scope.newsPosts[$scope.newsPosts.length - 1].id;
                 $scope.isBusy = false;
@@ -73,7 +69,7 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
                 var posts = data;
                 console.log(posts);
                 for (var i = 0; i < posts.length; i++) {
-                        $scope.newsPosts.push(posts[i]);
+                    $scope.newsPosts.push(posts[i]);
                 }
 
                 $scope.startPostId = $scope.newsPosts[$scope.newsPosts.length - 1].id;
@@ -169,9 +165,7 @@ SocialNetwork.controller('postController', function ($scope, postServices, $rout
                 console.log($scope.newsPosts);
                 for (var i = $scope.newsPosts.length - 1; i >= 0; i--) {
                     if ($scope.newsPosts[i].id === postId) {
-                        $scope.$apply(function () {
-                            $scope.newsPosts.splice(i, 1);
-                        })
+                        $scope.newsPosts.splice(i, 1);
                         break;
                     }
                 }

@@ -1,24 +1,53 @@
-<form ng-controller="userController" ng-init="getUserData()" ng-submit="editProfile()">
-    <label for="name">Full name:</label>
-    <input ng-model="editData.name" type="text" value="{{name}}" id="name">
-    <label for="email">Email:</label>
-    <input ng-model="editData.email" type="text" value="{{email}}" id="email">
-    <label for="maleGender">Male</label>
-    <input ng-model="editData.gender" ng-value="1" type="radio" id="maleGender" name="gender" value="Male">
-    <label for="femaleGender">Female</label>
-    <input ng-model="editData.gender" ng-value="2" type="radio" id="femaleGender" name="gender" value="Female">
-    <label for="otherGender">Other</label>
-    <input ng-model="editData.gender" ng-value="0" type="radio" id="otherGender" name="gender" value="Other">
+<navbar></navbar>
 
-    <img id="profilePicturePreview" src="{{editData.profileImageData}}" style="height: 50px"/>
-    <span id="pictureName"></span>
-    <input type="file" id="profilePicture" ng-click="uploadProfilePicture()" ng-model="editData.profileImageData"/>
-    <span>Size limit: UNLIMITED</span>
+<form class="form-signin" ng-controller="userController" ng-init="getUserData()" ng-submit="editProfile() ">
 
-    <img id="coverPicturePreview" src="{{editData.coverImageData}}" style="height: 50px"/>
-    <span id="coverPictureName"></span>
-    <input type="file" id="coverPicture" ng-click="uploadCoverPicture()" ng-model="editData.coverImageData"/>
-    <span>Size limit: UNLIMITED</span>
+    <h1 id="wellcomeMessage">Changing profile</h1>
 
-    <input type="submit" id="editProfileButton" value="Edit Profile">
+    <h3 class="form-signin-heading">Choose what do you want to change:</h3>
+    <input ng-model="editData.name" type="text" class="form-control" placeholder="{{name}}"
+           required="" autofocus="">
+    <input ng-model="editData.email" type="email" class="form-control"
+           placeholder="{{email}}" required="">
+
+    <input ng-model="editData.gender" type="radio" id="radio1" name="radios" value="1" checked="">
+    <label for="radio1">Male</label>
+    <input ng-model="editData.gender" type="radio" id="radio2" name="radios" value="2">
+    <label for="radio2">Female</label>
+    <input ng-model="editData.gender" type="radio" id="radio3" name="radios" value="0">
+    <label for="radio3">Other</label>
+
+    <div id="imageContainer">
+        <div class="col-lg-2 col-lg-offset-2 picture-upload">
+            <div class="form-group">
+                <img class="picture-preview thumbnail" name="image" src="{{editData.profileImageData}}"
+                     id="profilePicturePreview" style="width: 150px; height: 150px" required>
+            </div>
+            <span>Profile</span>
+
+            <div class="form-group">
+                <label for="profilePicture">Upload profile picture</label>
+                <input type="file" id="profilePicture" ng-click="uploadProfilePicture()"
+                       ng-model="editData.profileImageData">
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-lg-offset-2 picture-upload">
+            <div class="form-group">
+                <img class="picture-preview thumbnail" name="image" id="coverPicturePreview"
+                     src="{{editData.coverImageData}}" style="width: 150px; height: 150px" required>
+            </div>
+            <span>Cover</span>
+
+            <div class="form-group">
+                <label for="coverPicture">Upload cover picture</label>
+                <input type="file" id="coverPicture" ng-click="uploadCoverPicture()" ng-model="editData.coverImageData">
+            </div>
+        </div>
+    </div>
+    <a href="#/home"><p>Cancel</p></a>
+    <button id="registerBtn" class="btn btn-lg btn-primary btn-block" type="submit">Edit</button>
 </form>
+
+
+

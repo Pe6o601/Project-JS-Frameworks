@@ -1,0 +1,24 @@
+<div ng-cloak  class="prev">
+    <span class="button-custom" ng-click="hideUserPreview();hidePopover();" class="preview-close glyphicon glyphicon-remove"></span>
+
+    <p>{{post.author.name}}</p>
+    <div>
+        <img ng-src="{{post.author.profileImageData}}" alt="profile picture" style="width: 150px; height: 150px"/>
+    </div>
+    <div class>
+        <a ng-click="hidePopover()" href="#/users/{{post.author.username}}">
+            <h4>{{post.author.username}}</h4>
+        </a>
+        <p ng-if="post.author.gender===1">Male</p>
+        <p ng-if="post.author.gender===2">Female</p>
+        <p ng-if="post.author.gender===0">Other</p>
+        <div ng-if="post.author.username !== username">
+            <button ng-if="post.author.isFriend === false" type="submit" class="btn btn-lg btn-danger" >Not Friend</button>  <!--<button ng-if="post.author.isFriend === false" type="submit" class="btn btn-lg btn-danger" ng-click="sendFriendRequest(post.author.username)">Invite</button>-->
+        <button ng-if="post.author.isFriend === true" class="btn btn-lg btn-success" disabled>Friend</button>
+        <button ng-if="post.author.hasPendingRequest=== true" class="btn btn-lg btn-warning" disabled>Pending</button>
+        </div>
+        <p ng-if="post.author.username === username">That`s me :)</p>
+    </div>
+
+</div>
+

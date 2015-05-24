@@ -1,8 +1,6 @@
 'use strict';
 SocialNetwork.controller('friendsController', function ($scope, friendsServices, $location, $routeParams, $rootScope,notificationsService) {
 
-
-
     $scope.search = function(){
         $('#my-div').show();
         friendsServices.SearchByName($scope.search.searchTerm)

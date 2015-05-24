@@ -9,7 +9,9 @@
                     </a>
 
                     <div class="media-body">
-                        <h4 class="media-heading">{{post.author.name}} >> {{post.wallOwner.name}}</h4>
+                        <h4  class="media-heading">
+                            <span popup-show="templates/author-preview-template.html" popup-placement="left">{{post.author.name}} >></span>
+                            <span  popup-show="templates/owner-preview-template.html" popup-placement="left">{{post.wallOwner.name}}</span></h4>
 
                         <p class="text-right"></p>
 
@@ -42,7 +44,7 @@
                                         title="{{currentUser}}" ng-click="deletePost(post.id)">
                                     <span class="glyphicon glyphicon-remove-sign"></span></button>
                             </li>
-                            <li ng-if="!((post.author.isFriend===false)&&(post.wallOwner.isFriend===false))">|
+                            <li>|
                                     <button ng-click="showContent=!showContent"class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-comment"></span>comment</button>
                                     <span ng-show="showContent" ng-controller="postController">
                                         <form action="" ng-submit="addCommentToPost(post)">

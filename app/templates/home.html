@@ -8,7 +8,7 @@
         </div>
 
 
-        <div id="news-feed" ng-controller="postController">
+        <div id="news-feed" ng-controller="postController" ng-init="init()">
             <h1>News Feed</h1>
 
             <div infinite-scroll="nextPageFeed()" infinite-scroll-distance='1'>
