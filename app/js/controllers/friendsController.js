@@ -10,11 +10,11 @@ SocialNetwork.controller('friendsController', function ($scope, friendsServices,
         }else {
             friendsServices.SearchByName($scope.search.searchTerm)
                 .then(function (data) {
-                    console.log(data);
+                    
                     $scope.findedUsers = data;
                 }, function (error) {
                     SocialNetwork.showError(error, notificationsService);
-                    console.log(error);
+                    
                 }).finally(function () {
                     $('#my-div').hide();
                 })
@@ -28,7 +28,7 @@ SocialNetwork.controller('friendsController', function ($scope, friendsServices,
                 $scope.myFriends = data;
             }, function(error) {
                 SocialNetwork.showError(error, notificationsService);
-                console.log(error);
+                
             }).finally(function () {
                 $('#my-div').hide();
             })
@@ -39,13 +39,11 @@ SocialNetwork.controller('friendsController', function ($scope, friendsServices,
         friendsServices.getUserWall(sessionStorage['searchedUser'])
            .then(function(data){
                 $scope.searchedUser = data;
-                $scope.$apply(function () {
                     $scope.wallOwner=data;
-                })
-                console.log(data);
+
            }, function (error) {
                 SocialNetwork.showError(error, notificationsService);
-               console.log(error);
+               
            }).finally(function () {
                 $('#my-div').hide();
             })
@@ -55,12 +53,12 @@ SocialNetwork.controller('friendsController', function ($scope, friendsServices,
         $('#my-div').show();
         friendsServices.getMyFriends()
             .then(function (data) {
-                console.log(data);
+                
                $scope.myFriends = data;
                 $scope.friendsTotalCount = data.length;
             }, function(error){
                 SocialNetwork.showError(error, notificationsService);
-                console.log(error);
+                
             }).finally(function () {
                 $('#my-div').hide();
             })
@@ -70,12 +68,12 @@ SocialNetwork.controller('friendsController', function ($scope, friendsServices,
         $('#my-div').show();
         friendsServices.getUserFriends()
             .then(function (data) {
-                console.log(data);
+                
                 $scope.myFriends = data;
                 $scope.friendsTotalCount = data.length;
             }, function(error){
                 SocialNetwork.showError(error, notificationsService);
-                console.log(error);
+                
             }).finally(function () {
                 $('#my-div').hide();
             })
@@ -86,12 +84,12 @@ SocialNetwork.controller('friendsController', function ($scope, friendsServices,
         $('#my-div').show();
         friendsServices.showFriendsOfUser($routeParams.name)
             .then(function (data) {
-                console.log(data);
+                
                 $scope.myFriends = data.friends;
                 $scope.friendsTotalCount = data.totalCount;
             }, function(error){
                 SocialNetwork.showError(error, notificationsService);
-                console.log(error);
+                
             }).finally(function () {
                 $('#my-div').hide();
             })
@@ -100,7 +98,7 @@ SocialNetwork.controller('friendsController', function ($scope, friendsServices,
     $scope.redirectToUsersPage = function(username){
         $scope.searchedUser  = username;
         sessionStorage['searchedUser'] = username;
-        console.log($scope);
+        
         $location.path('/users/' + username);
     }
 
@@ -114,7 +112,7 @@ SocialNetwork.controller('friendsController', function ($scope, friendsServices,
 
             }, function (error) {
                 SocialNetwork.showError(error, notificationsService);
-                console.log(error);
+                
             }).finally(function () {
                 $('#my-div').hide();
             })
@@ -129,7 +127,7 @@ SocialNetwork.controller('friendsController', function ($scope, friendsServices,
 
             }, function (error) {
                 SocialNetwork.showError(error, notificationsService);
-                console.log(error);
+                
             }).finally(function () {
                 $('#my-div').hide();
             })
@@ -143,7 +141,7 @@ SocialNetwork.controller('friendsController', function ($scope, friendsServices,
                 $scope.userFriednName = $routeParams.name;
             }, function (error) {
                 SocialNetwork.showError(error, notificationsService);
-                console.log(error);
+                
             }).finally(function () {
                 $('#my-div').hide();
             })
@@ -161,18 +159,18 @@ SocialNetwork.controller('friendsController', function ($scope, friendsServices,
                     if (key.id !== userId) {
                         //$rootScope.watingRequests[val];
                         tempArr.push(key);
-                        console.log('deleted')
+                        
                     }
 
-                    console.log($rootScope.watingRequests.length)
+                    
                 })
                 $rootScope.watingRequests = tempArr;
                 SocialNetwork.showSuccess('Accepted successfully', notificationsService);
 
-                console.log($rootScope.watingRequestsLenght)
+                
             }, function (error) {
                 SocialNetwork.showError(error, notificationsService);
-                console.log(error)
+                
             }).finally(function () {
                 $('#my-div').hide();
             });
@@ -189,20 +187,35 @@ SocialNetwork.controller('friendsController', function ($scope, friendsServices,
                     if (key.id !== userId) {
                         //$rootScope.watingRequests[val];
                         tempArr.push(key);
-                        console.log('deleted')
+                        
                     }
 
-                    console.log($rootScope.watingRequests.length)
+                    
                 })
                 $rootScope.watingRequests = tempArr;
                 SocialNetwork.showSuccess('He is forever alone because of you', notificationsService);
 
             }, function (error) {
                 SocialNetwork.showError(error, notificationsService);
-                console.log(error)
+                
             }).finally(function () {
                 $('#my-div').hide();
             });
+    }
+
+    $scope.redirectToUserFriends=function(searchedUser){
+        if(searchedUser===undefined){
+            $location.path("/friends");
+        }else {
+            console.log(searchedUser)
+            if (searchedUser.username !== sessionStorage.username) {
+                $location.path("/users/" + searchedUser.username + "/friends");
+            }
+            if (searchedUser.username === sessionStorage.username) {
+                $location.path("/friends");
+            }
+        }
+
     }
 
 

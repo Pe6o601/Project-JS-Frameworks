@@ -10,7 +10,7 @@ SocialNetwork.controller("authenticationController", function ($scope, userServi
                 SetHeaders($http);
                 SocialNetwork.showSuccess('Register successful', notificationsService);
                 $location.path('/home');
-                console.log(data)
+                
             },function(error){
                 SocialNetwork.showError(error, notificationsService);
             }).finally(function () {
@@ -26,7 +26,7 @@ SocialNetwork.controller("authenticationController", function ($scope, userServi
                 SetHeaders($http);
                 $location.path('/home');
                 SocialNetwork.showSuccess('Logged successful', notificationsService);
-                console.log(data)
+                
             },function(error){
                 SocialNetwork.showError(error, notificationsService);
             }).finally(function () {
@@ -43,7 +43,7 @@ SocialNetwork.controller("authenticationController", function ($scope, userServi
                 $scope.redirectToLogin();
                 SocialNetwork.showSuccess('Why you leave us', notificationsService);
             }, function (err) {
-                console.log(err);
+                
             })
     };
 

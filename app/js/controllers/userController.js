@@ -20,7 +20,7 @@ SocialNetwork.controller("userController", function ($scope, userServices, $loca
                 $scope.editData = data;
             }, function (error) {
                 SocialNetwork.showError(error, notificationsService);
-                console.log(error);
+                
             }).finally(function () {
                 $('#my-div').hide();
             });
@@ -30,10 +30,10 @@ SocialNetwork.controller("userController", function ($scope, userServices, $loca
         userServices.editProfile($scope.editData)
             .then(function (data) {
                 SocialNetwork.showSuccess('Profile Changed', notificationsService);
-                console.log(data);
+                
             }, function (error) {
                 SocialNetwork.showError(error, notificationsService);
-                console.log(error);
+                
             }).finally(function () {
                 $('#my-div').hide();
             })

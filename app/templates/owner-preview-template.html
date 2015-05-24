@@ -1,7 +1,7 @@
 <div ng-cloak  class="prev">
     <span class="button-custom" ng-click="hideUserPreview();hidePopover();" class="preview-close glyphicon glyphicon-remove"></span>
 
-    <p>{{post.wallOwner.name}}</p>
+    <p > <a href="#/post.wallOwner.username">{{post.wallOwner.name}}</a></p>
     <div>
         <img ng-src="{{post.wallOwner.profileImageData}}" alt="profile picture" style="width: 150px; height: 150px"/>
     </div>

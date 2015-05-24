@@ -29,7 +29,14 @@ input {
     width: 50%;
     margin: 5% auto !important;
 }
-
+#add-post{
+    width: 100% !important;
+    margin-left: 16px !important;
+    margin-right: 0;
+}
+.textarea-post{
+    width: 100% !important;
+}
 input[type=radio] {
     display:none;
 }
