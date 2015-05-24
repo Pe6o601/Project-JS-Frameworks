@@ -45,8 +45,8 @@
                                     <span class="glyphicon glyphicon-remove-sign"></span></button>
                             </li>
                             <li>|
-                                    <button ng-if="post.author.isFriend||post.wallOwner.isFriend || post.wallOwner.username ===username" ng-click="showContent=!showContent"class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-comment"></span>comment</button>
-                                    <span ng-show="showContent" ng-controller="postController">
+                                    <button ng-if="post.author.isFriend||post.wallOwner.isFriend || post.wallOwner.username ===username" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-comment"></span>comment</button>
+                                    <span ng-controller="postController">
                                         <form action="" ng-submit="addCommentToPost(post)">
                                             <input ng-model="commentData.content" value="" type="text">
                                             <input type="submit" value="Comment this post">

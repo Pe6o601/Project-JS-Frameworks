@@ -47,6 +47,6 @@ SocialNetwork.config(function ($routeProvider) {
         if($location.path().indexOf('register')===-1)        {
             authorizationCheck($location);
         }
-
+        
     });
 });
