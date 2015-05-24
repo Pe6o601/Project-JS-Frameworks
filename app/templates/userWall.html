@@ -3,8 +3,9 @@
     <div ng-init="getUserWall()">
         <userwall></userwall>
         <div id="mainContent">
-            <div ng-if="wallOwner.isFriend" ng-init="showFriendsOfUser()" id="friends">
+            <div ng-if="searchedUser.isFriend" ng-init="showFriendsOfUser()" id="friends">
                 <friendsbar></friendsbar>
+                <add-post></add-post>
             </div>
             <div ng-if="searchedUser.username===username" ng-init="loadFriends()" id="friends">
                 <friendsbar></friendsbar>
