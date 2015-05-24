@@ -1,17 +1,84 @@
-<form action="" ng-controller="authenticationController"  ng-submit="register()">
-<p>todo password validation</p>
+<div class="container">
+    <div class="row centered-form">
+        <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Please sign up for Social Network
+                        <small>It's free!</small>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <form role="form" ng-controller="authenticationController" ng-submit="register()">
 
-    <input ng-model="registerData.username" type="text"/>
-    <input ng-model="registerData.password" type="text"/>
-    <input ng-model="registerData.confirmPassword" type="text"/>
-    <input ng-model="registerData.name" type="text"/>
-    <input ng-model="registerData.email" type="text"/>
-    <label for="male">male</label>
-    <label for="female">female</label>
-    <label for="other">Yordan</label>
-    <input  ng-model="registerData.gender" type="radio" name="gender" id="male" value="male"/>
-    <input ng-model="registerData.gender"  type="radio" name="gender" id="female" value="female"/>
-    <input ng-model="registerData.gender"  type="radio" name="gender" id="other" value="other"/>
-    <input  type="submit" value="register"/>
+                        <div class="form-group">
+                            <input type="text" name="last_name" ng-model="registerData.name" id="last_name" class="form-control input-sm"
+                                   placeholder="Name">
+                        </div>
 
-</form>
+
+                        <div class="form-group">
+                            <input type="text" ng-model="registerData.username" name="username" id="username"
+                                   class="form-control input-sm"
+                                   placeholder="Username">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="email" ng-model="registerData.email" name="email" id="email"
+                                   class="form-control input-sm"
+                                   placeholder="Email Address">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="password" ng-model="registerData.password" name="password"
+                                           id="password" class="form-control input-sm"
+                                           placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="password" ng-model="registerData.confirmPassword" name="password_confirmation" id="password_confirmation"
+                                           class="form-control input-sm" placeholder="Confirm Password">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-6  col-sm-4 col-md-4">
+                                <div class="radio">
+                                    <label style="font-size: 1em">
+                                        <input type="radio" ng-model="registerData.gender" name="o5" value=Male"">
+                                        <span class="cr"><i class="cr-icon fa fa-circle"></i></span>
+                                        Male
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-4 col-md-4">
+                                <div class="radio">
+                                    <label style="font-size: 1em">
+                                        <input ng-model="registerData.gender" type="radio" name="o5" value="Female">
+                                        <span class="cr"><i class="cr-icon fa fa-circle"></i></span>
+                                        Female
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 col-sm-4 col-md-4">
+                                <div class="radio">
+                                    <label style="font-size: 1em">
+                                        <input ng-model="registerData.gender" type="radio" name="o5" value="Other">
+                                        <span class="cr"><i class="cr-icon fa fa-circle"></i></span>
+                                        Other
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="submit" value="Register" class="btn btn-info btn-block">
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -74,6 +74,10 @@ width: 200%;
 .comment-row{
     width: 180%
 }
+
+.comment-row-boot{
+    width: 200%
+}
 .set-pic-size{
     max-width: none!important;
     height: 70px;
